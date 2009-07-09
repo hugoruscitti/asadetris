@@ -21,6 +21,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="asadetris v0.1 documentation" href="index.html" />
+    <link rel="next" title="Alcance del proyecto" href="alcance.html" />
     <link rel="prev" title="Asadetris" href="index.html" /> 
   </head>
   <body>
@@ -30,6 +31,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="alcance.html" title="Alcance del proyecto"
+             accesskey="N">siguiente</a> |</li>
         <li class="right" >
           <a href="index.html" title="Asadetris"
              accesskey="P">anterior</a> |</li>
@@ -54,6 +58,7 @@ horizontales.</p>
 <p>Esta es una imagen de la pantalla original del juego que nos sirve
 de inspiración:</p>
 <img alt="_images/tetris.png" src="_images/tetris.png" />
+<p>En este juego las piezas bajan a una determinada velocidad</p>
 </div>
 <div class="section" id="aspecto-visual">
 <h2>Aspecto visual<a class="headerlink" href="#aspecto-visual" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -61,10 +66,78 @@ de inspiración:</p>
 cuatro bloques. En <em>Asadetris</em> la piezas tienen un aspecto visual
 muy diferente, las piezas son porciones de comida:</p>
 <img alt="_images/piezas.png" src="_images/piezas.png" />
-<p>y el escenario de juego es el sistema digestivo de una persona (bueh, sin
-entrar en muchos detalles). A grandes razgos el escenario se parece
+<p>El escenario de juego es el sistema digestivo de una persona (bueh, sin
+entrar en muchos detalles). A grandes rasgos el escenario se parece
 a lo siguiente:</p>
-<img alt="images/escenario.png" src="images/escenario.png" />
+<img alt="_images/escenario.png" src="_images/escenario.png" />
+<p>Adicionalmente el juego permite cambiar el aspecto visual desde
+una opción del menú <em>Setup</em>.</p>
+<p>Hay solo dos temas visuales, un modo ambientado en comida y otro
+clásico con bloques de colores.</p>
+</div>
+<div class="section" id="escenas">
+<h2>Escenas<a class="headerlink" href="#escenas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Todo el juego está dividido en diferentes escenas, aquí se enumeran
+las mas importantes:</p>
+<dl class="docutils">
+<dt>Presents</dt>
+<dd>Se muestra el logo inicial del grupo losersjuegos.</dd>
+<dt>Main</dt>
+<dd>Es la pantalla del menú principal donde se muestra el logo del juego y un
+acceso al resto de las escenas.</dd>
+<dt>Game</dt>
+<dd>La pantalla principal de juego con las fichas y el puntaje</dd>
+<dt>Help</dt>
+<dd>Explica cómo jugar y los controles a utilizar.</dd>
+<dt>Setup</dt>
+<dd>Menú de opciones para elegir el modo de video (ventana o pantalla
+completa), las opciones de audio y el tema visual.</dd>
+<dt>Scores</dt>
+<dd>Muestra los puntajes mas importantes</dd>
+<dt>About</dt>
+<dd>Muestra el nombre de todos los desarrolladores, agradecimientos y notas
+de la licencia (que es GPL y queremos que la gente copie juego !)</dd>
+</dl>
+</div>
+<div class="section" id="controles">
+<h2>Controles<a class="headerlink" href="#controles" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Durante el menú del juego el usuario puede utilizar tanto
+el teclado como el mouse.</p>
+<p>En la escena de juego solo puede usar el teclado:</p>
+<ul class="simple">
+<li>Con los direccionales de izquierda y derecha puede mover la ficha horizontalmente.</li>
+<li>Para girar la pieza puede usar las teclas &#8216;z&#8217; (giro hacia izquierda) y &#8216;x&#8217;
+(giro hacia la derecha)</li>
+<li>El usuario puede hacer bajar la ficha de dos formas, pulsando <em>space</em> puede
+hacer bajar la ficha inmediatamente, mientras que pulsando el direccional
+hacia <em>abajo</em> solo acelera la caída progresivamente.</li>
+</ul>
+</div>
+<div class="section" id="niveles">
+<h2>Niveles<a class="headerlink" href="#niveles" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>A medida que el usuario va realizando lineas en la pantalla, el
+juego se hace cada vez mas difícil. Cada 10 lineas realizadas
+el juego avanza un nivel y con ello hay un aumento de velocidad.</p>
+<p>Al entrar en el juego el usuario puede elegir uno de tres
+modos de juego: <em>fácil</em>, <em>medio</em> o <em>experto</em>. Lo único que
+difiere de estos modos es el nivel inicial. Por ejemplo, si
+el usuario ingresa en modo <em>medio</em> su nivel inicial será
+5 (relativamente rápido).</p>
+</div>
+<div class="section" id="puntajes">
+<h2>Puntajes<a class="headerlink" href="#puntajes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Se quiere brindar al usuario la posibilidad de ingresar su
+nombre si ha realizado un buen puntaje. Para eso el juego
+evalúa el puntaje del jugador una vez que pierde.</p>
+<p>En el puntaje también cuenta el nivel de dificultad que ha
+elegido. Esto cuenta porque la cantidad de puntos que hace
+una persona jugando en modo difícil son mas valiosos que
+alguien que inicia en modo fácil, por dar un ejemplo.</p>
+<p>Esta diferenciación de modos se hace en la misma pantalla
+de puntajes. Ahí se muestra el nombre de la persona, la
+cantidad de lineas y el nivel de dificultad; todo esto
+se muestra en una sola pantalla y se puede consultar
+directamente ingresando a una opción del menú principal.</p>
 </div>
 </div>
 
@@ -79,6 +152,10 @@ a lo siguiente:</p>
 <li><a class="reference external" href="">Documento de diseño</a><ul>
 <li><a class="reference external" href="#introducci-n">Introducción</a></li>
 <li><a class="reference external" href="#aspecto-visual">Aspecto visual</a></li>
+<li><a class="reference external" href="#escenas">Escenas</a></li>
+<li><a class="reference external" href="#controles">Controles</a></li>
+<li><a class="reference external" href="#niveles">Niveles</a></li>
+<li><a class="reference external" href="#puntajes">Puntajes</a></li>
 </ul>
 </li>
 </ul>
@@ -86,6 +163,9 @@ a lo siguiente:</p>
             <h4>Tema anterior</h4>
             <p class="topless"><a href="index.html"
                                   title="Capítulo anterior">Asadetris</a></p>
+            <h4>Próximo tema</h4>
+            <p class="topless"><a href="alcance.html"
+                                  title="Próximo capítulo">Alcance del proyecto</a></p>
             <h3>Esta página</h3>
             <ul class="this-page-menu">
               <li><a href="_sources/documento_de_diseno.txt"
@@ -114,6 +194,9 @@ a lo siguiente:</p>
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="Índice General"
              >índice</a></li>
+        <li class="right" >
+          <a href="alcance.html" title="Alcance del proyecto"
+             >siguiente</a> |</li>
         <li class="right" >
           <a href="index.html" title="Asadetris"
              >anterior</a> |</li>
