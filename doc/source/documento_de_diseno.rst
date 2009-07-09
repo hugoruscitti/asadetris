@@ -90,6 +90,9 @@ En la escena de juego solo puede usar el teclado:
   hacer bajar la ficha inmediatamente, mientras que pulsando el direccional
   hacia *abajo* solo acelera la caída progresivamente.
 
+Para regresar al menú principal el usuario puede pulsar la tecla
+*Escape* o hacer *click* sobre un botón que se observa en pantalla.
+
 
 Niveles
 -------

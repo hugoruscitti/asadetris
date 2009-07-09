@@ -11,6 +11,7 @@ Contenido:
 .. toctree::
    :maxdepth: 2
 
+   integrantes
    documento_de_diseno
    alcance
 
