@@ -1,0 +1,17 @@
+Este directorio contiene toda la documentación
+del proyecto. Hay documentos de diseño y planificación.
+
+El archivo 'etapas.otl' contiene todas las tareas y
+etapas que conforman el desarrollo.
+
+Si usted es desarrollador también le resultará útil
+ingresar en el directorio 'source' y ver los
+archivos originales de la documentación.
+
+Tenga en cuenta que usamos el formato de documentación
+"Sphinx", por lo que usted puede ver toda la documentación
+en formato HTML con solo ejecutar los comandos:
+
+    make html
+    firefox build/html/index.html
+
