@@ -15,3 +15,7 @@ def run():
 
 
         pygame.time.delay(10)
+
+
+if __name__ == '__main__':
+    run()
