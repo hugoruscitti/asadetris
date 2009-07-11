@@ -6,6 +6,8 @@
 Asadetris
 =========
 
+.. image:: images/title.png
+
 Contenido:
 
 .. toctree::
