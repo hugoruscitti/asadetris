@@ -16,6 +16,7 @@ Contenido:
    integrantes
    documento_de_diseno
    alcance
+   modules
 
 Indices
 =======
