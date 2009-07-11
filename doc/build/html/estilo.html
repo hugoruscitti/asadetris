@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Estilo de programación &mdash; asadetris v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="asadetris v0.1 documentation" href="index.html" />
+    <link rel="next" title="Documento de diseño" href="documento_de_diseno.html" />
+    <link rel="prev" title="Integrantes" href="integrantes.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Índice Global de Módulos"
+             accesskey="M">módulos</a> |</li>
+        <li class="right" >
+          <a href="documento_de_diseno.html" title="Documento de diseño"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="integrantes.html" title="Integrantes"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="estilo-de-programaci-n">
+<h1>Estilo de programación<a class="headerlink" href="#estilo-de-programaci-n" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Este documento define las convenciones de programación que
+utilizamos para el proyecto. Esta guia no permiten
+lograr código consistente, fácil de leer y uniforme.</p>
+<p>Aquí solo resumimos los aspectos mas importantes de la
+convención, si quiere conocer mas detalles le recomendamos
+ver el documento que define por completo el estilo adoptado:</p>
+<blockquote>
+<a class="reference external" href="http://mundogeek.net/traducciones/guia-estilo-python.htm">http://mundogeek.net/traducciones/guia-estilo-python.htm</a></blockquote>
+<div class="section" id="estructura-del-c-digo">
+<h2>Estructura del código<a class="headerlink" href="#estructura-del-c-digo" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Es indispensable que el código en python esté identando de
+la misma forma en todo el proyecto. Aquí utilizamos <strong>4 espacios</strong>
+para definir cada bloque de código.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">load_image</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Carga una imagen y retorna un objeto surface.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="c"># etc...</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Configure su editor para que adopte 4 espacios al pulsar la
+tecla TAB. Esta funcionalidad la soportan la mayoría de
+los editores.</p>
+</div>
+</div>
+<div class="section" id="sistema-de-codificaci-n">
+<h2>Sistema de codificación<a class="headerlink" href="#sistema-de-codificaci-n" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Utilizamos el sistema de codificación <em>UTF8</em>, esto nos permite escribir
+comentarios en español con mayor naturalidad.</p>
+<p>Los archivos python creados en este proyecto comienzan con el
+texto:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- encoding: utf-8 -*-</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inclusiones">
+<h2>Inclusiones<a class="headerlink" href="#inclusiones" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Para incluir rutinas de otros módulos usamos la forma mas simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pygame</span>
+<span class="kn">import</span> <span class="nn">utils</span>
+</pre></div>
+</div>
+<p>No utilizamos variantes, como por ejemplo <tt class="docutils literal"><span class="pre">from</span> <span class="pre">pygame</span> <span class="pre">import</span> <span class="pre">*</span></tt>, con
+la intensión de hacer explícitas las sentencias de todo el código.</p>
+</div>
+<div class="section" id="separaciones-y-caracteres-en-blanco">
+<h2>Separaciones y caracteres en blanco<a class="headerlink" href="#separaciones-y-caracteres-en-blanco" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Los espacios en blanco se suelen colocar después de una
+coma:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">create_display</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Genera una ventana para el tamaño solicitado.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>y entre operadores como por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mf">640</span><span class="p">,</span> <span class="mf">480</span><span class="p">)</span>
+<span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">size</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">create_display</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">fullscreen</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Iniciando el modo pantalla completa.&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentaci-n">
+<h2>Documentación<a class="headerlink" href="#documentaci-n" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Documentamos funciones y clases de manera breve usando <em>docstrings</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Sprite</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Representa un personaje animado en la pantalla.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Construye un elemento situado en la posición (x, y).&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>evitamos colocar comentarios redundantes, a menos que sea
+estrictamente necesario.</p>
+<p>Por ejemplo: <tt class="docutils literal"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">30</span>&nbsp; <span class="pre">#</span> <span class="pre">asignamos</span> <span class="pre">una</span> <span class="pre">posición</span></tt> es un mensaje redundante...</p>
+</div>
+<div class="section" id="nombres">
+<h2>Nombres<a class="headerlink" href="#nombres" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Usamos nombres en <em>Inglés</em> que resulten representativos para el
+dato que señalan.</p>
+<p>Las variables y las funciones se escriben en minúsculas, y si
+se componen de varias palabras usamos el guion bajo para separarlas.</p>
+<p>Por ejemplo:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mf">40</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mf">100</span>
+<span class="n">logo</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s">&#39;menu/logo.png&#39;</span><span class="p">)</span>
+
+<span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>En cambio, nos nombres de clases se definen usando el estilo <em>CamelCase</em>,
+donde cada palabra se distingue de otra usando una mayúscula:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">SimpleAnimation</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
+    <span class="c"># code...</span>
+    <span class="k">pass</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s">&#39;animation.png&#39;</span><span class="p">)</span>
+<span class="n">animation</span> <span class="o">=</span> <span class="n">SimpleAnimation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mf">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="">Estilo de programación</a><ul>
+<li><a class="reference external" href="#estructura-del-c-digo">Estructura del código</a></li>
+<li><a class="reference external" href="#sistema-de-codificaci-n">Sistema de codificación</a></li>
+<li><a class="reference external" href="#inclusiones">Inclusiones</a></li>
+<li><a class="reference external" href="#separaciones-y-caracteres-en-blanco">Separaciones y caracteres en blanco</a></li>
+<li><a class="reference external" href="#documentaci-n">Documentación</a></li>
+<li><a class="reference external" href="#nombres">Nombres</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Tema anterior</h4>
+            <p class="topless"><a href="integrantes.html"
+                                  title="Capítulo anterior">Integrantes</a></p>
+            <h4>Próximo tema</h4>
+            <p class="topless"><a href="documento_de_diseno.html"
+                                  title="Próximo capítulo">Documento de diseño</a></p>
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/estilo.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Índice Global de Módulos"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="documento_de_diseno.html" title="Documento de diseño"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="integrantes.html" title="Integrantes"
+             >anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Losersjuegos.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body>
+</html>

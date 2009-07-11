@@ -1,11 +1,12 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
+
 import pygame
 import os
 # Como no se aún el directorio donde se ubicaran las imágenes, dejo la variable
 # con una ruta simbólica que más adelante sera sustituida por la auténtica.
 DATOS = os.path.dirname(os.path.abspath(__file__))
 
-# Función para cargar imágenes, devuelve la imagén y su tamaño
+# Función para cargar imágenes, devuelve la imagen y su tamaño
 def load_images(name, colorkey = False):
 	fullname = os.path.join(DATOS, "../images", name)
 	
