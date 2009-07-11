@@ -4,7 +4,7 @@
 : Note que este archivo se modifica con frecuencia, en este momento
 : no está completo.
 
-[_] 45% Etapa 1
+[_] 58% Etapa 1
 	: El propósito de esta etapa es tener una ventana principal con
 	: un fondo de pantalla y una leyenda de texto. El usuario tiene
 	: que poder cerrar la ventana pulsando una tecla o haciendo click
@@ -20,7 +20,8 @@
 	[X] crear una ventana
 	[_] gestionar los eventos de mouse y teclado
 	[_] crear el sistema de escenas básico
-	[_] crear función para cargar imagenes
+	[X] crear función para cargar imagenes
+	[X] mostrar una imagen con el titulo del juego.
 	[_] definir un archivo setup.py inicial
 	[X] publicar URL de la documentación en el foro
 	[_] 0% desarrollar un sistema de fuentes tipograficas
