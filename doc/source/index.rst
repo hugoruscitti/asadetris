@@ -14,6 +14,7 @@ Contenido:
    :maxdepth: 2
 
    integrantes
+   estilo
    documento_de_diseno
    alcance
    modules
