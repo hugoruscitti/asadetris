@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tareas y etapas &mdash; asadetris v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="asadetris v0.1 documentation" href="index.html" />
+    <link rel="next" title="Estilo de programación" href="estilo.html" />
+    <link rel="prev" title="Integrantes" href="integrantes.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Índice Global de Módulos"
+             accesskey="M">módulos</a> |</li>
+        <li class="right" >
+          <a href="estilo.html" title="Estilo de programación"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="integrantes.html" title="Integrantes"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tareas-y-etapas">
+<h1>Tareas y etapas<a class="headerlink" href="#tareas-y-etapas" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>El proyecto se divide en varias etapas, y a su vez cada etapa está
+dividida en diferentes tareas.</p>
+<p>Lo que sigue es el contenido del archivo <tt class="docutils literal"><span class="pre">doc/etapas.otl</span></tt> en
+donde registramos cada uno de los cambios que realizamos en base
+a la planificación.</p>
+<div class="highlight-python"><pre>: Este documento enumera todas las tareas y etapas que se relizarán
+: para concluir el desarrollo del juego.
+:
+: Note que este archivo se modifica con frecuencia, en este momento
+: no está completo.
+
+[_] 66% Etapa 1
+	: El propósito de esta etapa es tener una ventana principal con
+	: un fondo de pantalla y una leyenda de texto. El usuario tiene
+	: que poder cerrar la ventana pulsando una tecla o haciendo click
+	: con el mouse.
+	:
+	: En sí es muy básico, pero aún así involucra varias tareas realacionadas
+	: con la organización del proyecto, la documentación, los directorios y 
+	: las funciones iniciales.
+	:
+	[X] crear repositorio
+	[X] definir la estructura de directorios a utilizar
+	[X] crear el directorio 'doc' con la documentación en formato sphinx
+	[X] crear una ventana
+	[_] gestionar los eventos de mouse y teclado
+	[_] crear el sistema de escenas básico
+	[X] crear función para cargar imagenes
+	[X] mostrar una imagen con el titulo del juego.
+	[_] definir un archivo setup.py inicial
+	[X] publicar URL de la documentación en el foro
+	[_] 0% desarrollar un sistema de fuentes tipograficas
+		[_] crear un directorio para recursos de fuentes tipograficas
+		[_] crear función para cargar e imprimir fuentes
+	[X] proponer un estilo de codificación
+[_] % Etapa 2
+	: Se desarrollan los movimientos básicos de las piezas, el usuario
+	: tiene que poder mover una pieza por la pantalla usando los
+	: direccionales del teclado y rotar las mismas con las teclas 'x' y
+	: 'z'.
+	:
+	: Si la ficha llega abajo queda bloqueada hacia abajo, pero igualmente
+	: se tiene que poder mover de izquierda a derecha.
+	:
+	: Se relaciona con la etapa uno porque el usuario puede pulsar
+	: "Escape" y se le tiene que mostrar la pantalla del ejemplo anterior,
+	: en donde pulsando una tecla se cierra toda la aplicación.
+	:
+	: Hay solo un tipo de pieza (la "L").
+	:
+	[_] crear escena de juego
+	[_] crear una ficha
+	[_] permitir el movimiento de la ficha
+	[_] aplicar restricciones de movimiento como los bordes
+	[_] implementar las rotaciones hacia izquiera o derecha
+	[_] restringir las rotaciones en los bordes
+	[_] mejorar el sistema de escenas para permitir cambios de una a otra
+	[_] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
+[_] % Etapa 3
+	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
+	: que poder hacer bajar una pieza, que permanezca en el suelo y que
+	: llegue otra nueva para poder mover.
+	:
+	: Al igual que la etapa anterior tiene que haber una sola pieza, la "L".
+	:
+	: Cuando el usuario llegue arriba se tiene que imprimir algún mensaje
+	: y cambiar de escena.
+	:
+	: No se pueden hacer lineas en esta versión.
+	[_] Detener piezas cuando llegan abajo
+	[_] Crear nuevas piezas cuando deja una en el suelo
+	[_] implementar colisiones entre las piezas
+	[_] crear las piezas que faltan y mostrarlas aleatoriamente
+[_] % Etapa 4
+	: Aquí se implementan dos grandes mejoras, la creación de lineas y las
+	: diferentes piezas.
+	:
+	: El usuario ahora puede jugar, aunque no tiene puntaje ni animaciones.
+	:
+[_] 	
+	[_] crear animación a la elimianción de lineas
+	[_] implementar puntajes
+	[_] aplicar animaciones a la rotación de las piezas
+[_] 
+</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Tema anterior</h4>
+            <p class="topless"><a href="integrantes.html"
+                                  title="Capítulo anterior">Integrantes</a></p>
+            <h4>Próximo tema</h4>
+            <p class="topless"><a href="estilo.html"
+                                  title="Próximo capítulo">Estilo de programación</a></p>
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/tareas_y_etapas.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="modindex.html" title="Índice Global de Módulos"
+             >módulos</a> |</li>
+        <li class="right" >
+          <a href="estilo.html" title="Estilo de programación"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="integrantes.html" title="Integrantes"
+             >anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Losersjuegos.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body>
+</html>
