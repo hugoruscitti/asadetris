@@ -4,7 +4,7 @@
 : Note que este archivo se modifica con frecuencia, en este momento
 : no está completo.
 
-[_] 58% Etapa 1
+[_] 66% Etapa 1
 	: El propósito de esta etapa es tener una ventana principal con
 	: un fondo de pantalla y una leyenda de texto. El usuario tiene
 	: que poder cerrar la ventana pulsando una tecla o haciendo click
@@ -27,7 +27,7 @@
 	[_] 0% desarrollar un sistema de fuentes tipograficas
 		[_] crear un directorio para recursos de fuentes tipograficas
 		[_] crear función para cargar e imprimir fuentes
-	[_] proponer un estilo de codificación
+	[X] proponer un estilo de codificación
 [_] % Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
 	: tiene que poder mover una pieza por la pantalla usando los

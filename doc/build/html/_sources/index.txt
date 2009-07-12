@@ -14,6 +14,7 @@ Contenido:
    :maxdepth: 2
 
    integrantes
+   tareas_y_etapas
    estilo
    documento_de_diseno
    alcance
