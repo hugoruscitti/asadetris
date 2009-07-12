@@ -1,5 +1,10 @@
 Módulos
 =======
 
-.. automodule:: lib
+
+Funciones de utilidad
+----------------------
+
+
+.. autofunction:: lib.utils.load_images
 
