@@ -1,4 +1,4 @@
 # Sphinx inventory version 1
 # Project: asadetris
 # Version: 0.1
-lib mod modules.html
+lib.utils.load_images function modules.html
