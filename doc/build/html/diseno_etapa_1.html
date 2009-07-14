@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Diseño de la etapa 1 &mdash; asadetris v0.1 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="top" title="asadetris v0.1 documentation" href="index.html" />
+    <link rel="next" title="Módulos" href="modules.html" />
+    <link rel="prev" title="Alcance del proyecto" href="alcance.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             accesskey="I">índice</a></li>
+        <li class="right" >
+          <a href="modules.html" title="Módulos"
+             accesskey="N">siguiente</a> |</li>
+        <li class="right" >
+          <a href="alcance.html" title="Alcance del proyecto"
+             accesskey="P">anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dise-o-de-la-etapa-1">
+<h1>Diseño de la etapa 1<a class="headerlink" href="#dise-o-de-la-etapa-1" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Este documento explica parte de las decisiones e ideas que
+definen la estructura del juego.</p>
+<p>Puede usar el contenido de este texto para conocer de manera
+sencilla cómo funciona el juego, que componentes tiene, cómo
+se relacionan entre sí.</p>
+<div class="section" id="objetos-y-desacoplamiento">
+<h2>Objetos y desacoplamiento<a class="headerlink" href="#objetos-y-desacoplamiento" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El juego va a incluir mucha complejidad, necesitamos gestionar eventos,
+dibujar en pantalla, analizar colisiones, puntajes y sonidos.</p>
+<p>Esta complejidad se suele resolver en programación utilizando una
+estrategia muy simple, que consiste en dividir el sistema completo
+en componentes mas pequeños. Es mucho mas previsible y sencillo
+gestionar unidades de funcionalidad pequeñas que grandes...</p>
+<p>A grandes rasgos, hay muchas estrategias para dividir todo el
+diseño en componentes pequeños. Aquí utilizaremos conceptos de
+programación orientada a objetos, en donde el funcionamiento
+del sistema se basa en Objetos individuales que intercambian
+mensajes entre sí.</p>
+</div>
+<div class="section" id="objeto-principal-director">
+<h2>Objeto principal: Director<a class="headerlink" href="#objeto-principal-director" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El objeto <tt class="docutils literal"><span class="pre">Director</span></tt> (director.py) es el encargado de mantener
+el juego en funcionamiento.</p>
+<p>Este objeto hace lo mínimo y necesario para mantener operable la
+ventana principal, básicamente hace solo estas cosas:</p>
+<ul class="simple">
+<li>Genera la ventana del juego (inicia).</li>
+<li>Dibuja constantemente la ventana (dibuja).</li>
+<li>Mantiene en movimiento los objetos en pantalla (actualiza)</li>
+<li>Atiene los eventos del usuario (responde).</li>
+</ul>
+</div>
+<div class="section" id="escenas-las-partes-de-un-juego">
+<h2>Escenas, las partes de un juego<a class="headerlink" href="#escenas-las-partes-de-un-juego" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En realidad, el objeto director representa solo la <tt class="docutils literal"><span class="pre">caja</span></tt> que
+mantiene en funcionamiento el juego, esa es su responsabilidad.</p>
+<p>Pero falta algo, en realidad este juego estará compuesto de
+varias escenas como una <em>presentación</em>, el <em>menú de opciones</em>, la
+pantalla de <em>juego</em> (con las piezas), <em>el ranking de puntajes</em> etc...</p>
+<p>Si eligiéramos escribir todas estas funcionalidades en el mismo
+objeto Director, llegaríamos a tener una rutina algo difícil
+de manejar, con variables de control (estilo
+<tt class="docutils literal"><span class="pre">if</span> <span class="pre">etapa</span> <span class="pre">==</span> <span class="pre">'menu'</span> <span class="pre">or</span> <span class="pre">etapa</span> <span class="pre">==</span> <span class="pre">'opci...'</span></tt>).</p>
+<p>En lugar de ello, vamos a optar por una solución que recibe el
+nombre de <strong>Patrón estrategia</strong>, una solución que en programación
+se suele agrupar en un conjunto mas grande llamado <em>patrones de diseño</em>.</p>
+<p>Bajo esta solución, podemos representar el funcionamiento del juego
+como la colaboración entre dos clases:</p>
+<img alt="images/director_escena.png" src="images/director_escena.png" />
+<p>El objeto  director se encarga solamente de mantener en funcionamiento
+la aplicación, esto consiste en actualizar periódicamente la pantalla,
+atender eventos y actualizar objetos.</p>
+<p>El objeto escena, en cambio, contiene todo el código necesario para
+representar una sola escena del juego. Cuando llega la orden de
+actualizar la pantalla, la escena dibuja lo que le corresponde. Cuando
+llega un evento, la escena lo atiene y responde.</p>
+<p>Lo interesante de diseñar estos objetos por separado radica en poder
+desacoplarlos en cualquier momento, por ejemplo si queremos ir
+de la presentación del juego al menú principal, solamente
+tendremos que eliminar un objeto y reemplazarlo por otro:</p>
+<img alt="images/cambio_de_escena.png" src="images/cambio_de_escena.png" />
+<p>En términos de programación, no hay mayor dificultad, el objeto
+Director está diseñado para operar con una escena, e incluso
+para intercambiarlas.</p>
+<p>Este ejemplo ilustrativo (no ejecutable) muestra como crear una
+escena, imprimirla sobre la pantalla y luego cambiarla por otra:</p>
+<div class="highlight-python"><pre>presentacion = new Presentacion()
+director.set_scene(presentacion)
+
+director.draw()           # imprime la escena menu.
+director.draw()           # imprime la escena menu por segunda vez.
+
+juego = new Juego()
+director.set_scene(juego)   # descarta la escena anterior.
+director.draw()             # imprime la escena de juego.</pre>
+</div>
+</div>
+<div class="section" id="escenas-ampliando">
+<h2>Escenas, ampliando<a class="headerlink" href="#escenas-ampliando" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Algo interesante para observar, es que las escenas son muy
+parecidas entre sí. Una escena tiene que definir solamente 3
+métodos obligatorios, y por lo tanto se pueden crear nuevas
+escenas a partir de una general:</p>
+<div class="highlight-python"><pre>.. image:: images/escena_diagrama_clases.png</pre>
+</div>
+<p>Si bien puede haber muchas escenas, es importante notar que
+en tiempo de ejecución solo habrá una escena activa (el objeto
+Director solo sabe administrar una...)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="">Diseño de la etapa 1</a><ul>
+<li><a class="reference external" href="#objetos-y-desacoplamiento">Objetos y desacoplamiento</a></li>
+<li><a class="reference external" href="#objeto-principal-director">Objeto principal: Director</a></li>
+<li><a class="reference external" href="#escenas-las-partes-de-un-juego">Escenas, las partes de un juego</a></li>
+<li><a class="reference external" href="#escenas-ampliando">Escenas, ampliando</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Tema anterior</h4>
+            <p class="topless"><a href="alcance.html"
+                                  title="Capítulo anterior">Alcance del proyecto</a></p>
+            <h4>Próximo tema</h4>
+            <p class="topless"><a href="modules.html"
+                                  title="Próximo capítulo">Módulos</a></p>
+            <h3>Esta página</h3>
+            <ul class="this-page-menu">
+              <li><a href="_sources/diseno_etapa_1.txt"
+                     rel="nofollow">Enseñar el código</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Búsqueda rápida</h3>
+              <form class="search" action="search.html" method="get">
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Ir a" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navegación</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Índice General"
+             >índice</a></li>
+        <li class="right" >
+          <a href="modules.html" title="Módulos"
+             >siguiente</a> |</li>
+        <li class="right" >
+          <a href="alcance.html" title="Alcance del proyecto"
+             >anterior</a> |</li>
+        <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; Copyright 2009, Losersjuegos.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+    </div>
+  </body>
+</html>
