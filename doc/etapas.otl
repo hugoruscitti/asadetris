@@ -4,7 +4,7 @@
 : Note que este archivo se modifica con frecuencia, en este momento
 : no está completo.
 
-[_] 69% Etapa 1
+[_] 75% Etapa 1
 	: El propósito de esta etapa es tener una ventana principal con
 	: un fondo de pantalla y una leyenda de texto. El usuario tiene
 	: que poder cerrar la ventana pulsando una tecla o haciendo click
@@ -19,11 +19,11 @@
 	[X] crear el directorio 'doc' con la documentación en formato sphinx
 	[X] crear una ventana
 	[_] gestionar los eventos de mouse y teclado
-	[_] crear el sistema de escenas básico
+	[X] crear el sistema de escenas básico
 		[X] explicar la estrategia a desarrollar
-		[_] mejorar el programa principal
-		[_] crear la escena abstracta
-			[_] crear una escena de implementación (presentación)
+		[X] mejorar el programa principal
+		[X] crear la escena abstracta
+			[X] crear una escena de implementación (presentación)
 	[X] crear función para cargar imagenes
 	[X] mostrar una imagen con el titulo del juego.
 	[_] definir un archivo setup.py inicial
