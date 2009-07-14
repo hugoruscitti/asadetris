@@ -51,7 +51,7 @@
 <p>Este documento explica parte de las decisiones e ideas que
 definen la estructura del juego.</p>
 <p>Puede usar el contenido de este texto para conocer de manera
-sencilla cómo funciona el juego, que componentes tiene, cómo
+sencilla cómo funciona el juego, que componentes tiene y cómo
 se relacionan entre sí.</p>
 <div class="section" id="objetos-y-desacoplamiento">
 <h2>Objetos y desacoplamiento<a class="headerlink" href="#objetos-y-desacoplamiento" title="Enlazar permanentemente con este título">¶</a></h2>
@@ -60,7 +60,7 @@ dibujar en pantalla, analizar colisiones, puntajes y sonidos.</p>
 <p>Esta complejidad se suele resolver en programación utilizando una
 estrategia muy simple, que consiste en dividir el sistema completo
 en componentes mas pequeños. Es mucho mas previsible y sencillo
-gestionar unidades de funcionalidad pequeñas que grandes...</p>
+gestionar unidades de funcionalidad pequeñas que grandes.</p>
 <p>A grandes rasgos, hay muchas estrategias para dividir todo el
 diseño en componentes pequeños. Aquí utilizaremos conceptos de
 programación orientada a objetos, en donde el funcionamiento
@@ -96,7 +96,17 @@ nombre de <strong>Patrón estrategia</strong>, una solución que en programació
 se suele agrupar en un conjunto mas grande llamado <em>patrones de diseño</em>.</p>
 <p>Bajo esta solución, podemos representar el funcionamiento del juego
 como la colaboración entre dos clases:</p>
-<img alt="images/director_escena.png" src="images/director_escena.png" />
+<p class="graphviz">
+<img src="_images/graphviz-08b7e1a24efc886013691972b096a78dfb7eee7a.png" alt="digraph &quot;digraph&quot; {
+        node [shape=ellipse, fontsize=&quot;11.0&quot;, fontname=Verdana];
+        Director [shape=record, fontsize=10, fontname=Verdana, label=&quot;{Director|screen\nscene|loop()\nchange_scene()}&quot;];
+        Scene [shape=record, fontsize=10, fontname=Verdana, label=&quot;{Scene|...|}&quot;];
+
+        Director -&gt; Scene [label=&quot;dibujar&quot;, fontsize=&quot;11.0&quot;, fontname=Verdana]
+        Director -&gt; Scene [label=&quot;actualizar&quot;,fontsize=&quot;11.0&quot;, fontname=Verdana]
+        Director -&gt; Scene [label=&quot;procesar evento&quot;, fontsize=&quot;11.0&quot;, fontname=Verdana]
+}" />
+</p>
 <p>El objeto  director se encarga solamente de mantener en funcionamiento
 la aplicación, esto consiste en actualizar periódicamente la pantalla,
 atender eventos y actualizar objetos.</p>
@@ -108,7 +118,15 @@ llega un evento, la escena lo atiene y responde.</p>
 desacoplarlos en cualquier momento, por ejemplo si queremos ir
 de la presentación del juego al menú principal, solamente
 tendremos que eliminar un objeto y reemplazarlo por otro:</p>
-<img alt="images/cambio_de_escena.png" src="images/cambio_de_escena.png" />
+<p class="graphviz">
+<img src="_images/graphviz-5f3616cfb0e852c9378cef45d9d2e3af9d68a348.png" alt="digraph &quot;digraph&quot; {
+        node [shape=ellipse, fontsize=&quot;11.0&quot;, fontname=Verdana];
+        Director [shape=record, fontsize=10, fontname=Verdana, label=&quot;{Director|screen\nscene|loop()\nchange_scene()}&quot;];
+        Scene [shape=record, fontsize=10, fontname=Verdana, label=&quot;{MainMenu|...|}&quot;];
+
+        Director -&gt; Scene
+}" />
+</p>
 <p>En términos de programación, no hay mayor dificultad, el objeto
 Director está diseñado para operar con una escena, e incluso
 para intercambiarlas.</p>
@@ -131,11 +149,33 @@ director.draw()             # imprime la escena de juego.</pre>
 parecidas entre sí. Una escena tiene que definir solamente 3
 métodos obligatorios, y por lo tanto se pueden crear nuevas
 escenas a partir de una general:</p>
-<div class="highlight-python"><pre>.. image:: images/escena_diagrama_clases.png</pre>
-</div>
+<p class="graphviz">
+<img src="_images/graphviz-b08b556ff402bcd2bcbbe08707e69d155bdbc193.png" alt="digraph &quot;dhigraph&quot; {
+    graph [rankdir=BT];
+        node [shape=ellipse, fontsize=&quot;11.0&quot;, fontname=Verdana];
+        Scene [shape=record, fontsize=10, fontname=Verdana, label=&quot;{Scene|...|on_update()\non_draw(screen)\non_event()}&quot;];
+        S2 [shape=record, fontsize=10, fontname=Verdana, label=&quot;{PresentsScene|...|}&quot;];
+        S3 [shape=record, fontsize=10, fontname=Verdana, label=&quot;{MenuScene|...|}&quot;];
+        S4 [shape=record, fontsize=10, fontname=Verdana, label=&quot;{GameScene|...|}&quot;];
+
+        S2 -&gt; Scene [label=&quot;hereda de...&quot;, fontsize=10, fontname=Verdana]
+        S3 -&gt; Scene [label=&quot;hereda de...&quot;, fontsize=10, fontname=Verdana]
+        S4 -&gt; Scene [label=&quot;hereda de...&quot;, fontsize=10, fontname=Verdana];
+}" />
+</p>
 <p>Si bien puede haber muchas escenas, es importante notar que
 en tiempo de ejecución solo habrá una escena activa (el objeto
 Director solo sabe administrar una...)</p>
+</div>
+<div class="section" id="el-director-no-sabe-de-que-v-la-pel-cula">
+<h2>El Director no sabe de que vá la película...<a class="headerlink" href="#el-director-no-sabe-de-que-v-la-pel-cula" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El objeto director tampoco sabe con certeza en que etapa
+del juego se encuentra el usuario, para el objeto Director
+todas las scenas son iguales, solo le interesa llamar a los
+3 métodos que obligatoriamente tiene cada una.</p>
+<p>De hecho, cuando se quiere cambiar de una escena a la
+otra, es precisamente una escena la que le dice al
+objeto director a que otra escena debe cambiar...</p>
 </div>
 </div>
 
@@ -152,6 +192,7 @@ Director solo sabe administrar una...)</p>
 <li><a class="reference external" href="#objeto-principal-director">Objeto principal: Director</a></li>
 <li><a class="reference external" href="#escenas-las-partes-de-un-juego">Escenas, las partes de un juego</a></li>
 <li><a class="reference external" href="#escenas-ampliando">Escenas, ampliando</a></li>
+<li><a class="reference external" href="#el-director-no-sabe-de-que-v-la-pel-cula">El Director no sabe de que vá la película...</a></li>
 </ul>
 </li>
 </ul>

@@ -65,7 +65,19 @@ se suele agrupar en un conjunto mas grande llamado *patrones de diseño*.
 Bajo esta solución, podemos representar el funcionamiento del juego
 como la colaboración entre dos clases:
 
-.. image:: images/director_escena.png
+
+.. graphviz::
+
+    digraph "digraph" {
+            node [shape=ellipse, fontsize="11.0", fontname=Verdana];
+            Director [shape=record, fontsize=10, fontname=Verdana, label="{Director|screen\nscene|loop()\nchange_scene()}"];
+            Scene [shape=record, fontsize=10, fontname=Verdana, label="{Scene|...|}"];
+
+            Director -> Scene [label="dibujar", fontsize="11.0", fontname=Verdana]
+            Director -> Scene [label="actualizar",fontsize="11.0", fontname=Verdana]
+            Director -> Scene [label="procesar evento", fontsize="11.0", fontname=Verdana]
+    }
+
 
 El objeto  director se encarga solamente de mantener en funcionamiento
 la aplicación, esto consiste en actualizar periódicamente la pantalla,
@@ -81,8 +93,16 @@ desacoplarlos en cualquier momento, por ejemplo si queremos ir
 de la presentación del juego al menú principal, solamente
 tendremos que eliminar un objeto y reemplazarlo por otro:
 
+.. graphviz::
 
-.. image:: images/cambio_de_escena.png
+    digraph "digraph" {
+            node [shape=ellipse, fontsize="11.0", fontname=Verdana];
+            Director [shape=record, fontsize=10, fontname=Verdana, label="{Director|screen\nscene|loop()\nchange_scene()}"];
+            Scene [shape=record, fontsize=10, fontname=Verdana, label="{MainMenu|...|}"];
+
+            Director -> Scene
+    }
+
 
 En términos de programación, no hay mayor dificultad, el objeto
 Director está diseñado para operar con una escena, e incluso
@@ -108,9 +128,25 @@ Escenas, ampliando
 Algo interesante para observar, es que las escenas son muy
 parecidas entre sí. Una escena tiene que definir solamente 3
 métodos obligatorios, y por lo tanto se pueden crear nuevas
-escenas a partir de una general::
+escenas a partir de una general:
 
-.. image:: images/escena_diagrama_clases.png
+
+
+.. graphviz::
+
+    digraph "dhigraph" {
+        graph [rankdir=BT];
+            node [shape=ellipse, fontsize="11.0", fontname=Verdana];
+            Scene [shape=record, fontsize=10, fontname=Verdana, label="{Scene|...|on_update()\non_draw(screen)\non_event()}"];
+            S2 [shape=record, fontsize=10, fontname=Verdana, label="{PresentsScene|...|}"];
+            S3 [shape=record, fontsize=10, fontname=Verdana, label="{MenuScene|...|}"];
+            S4 [shape=record, fontsize=10, fontname=Verdana, label="{GameScene|...|}"];
+
+            S2 -> Scene [label="hereda de...", fontsize=10, fontname=Verdana]
+            S3 -> Scene [label="hereda de...", fontsize=10, fontname=Verdana]
+            S4 -> Scene [label="hereda de...", fontsize=10, fontname=Verdana];
+    }
+
 
 
 Si bien puede haber muchas escenas, es importante notar que
