@@ -8,7 +8,7 @@ Asadetris
 
 .. image:: images/title.png
 
-Contenido:
+Contenido inicial:
 
 .. toctree::
    :maxdepth: 2
@@ -18,6 +18,14 @@ Contenido:
    estilo
    documento_de_diseno
    alcance
+
+
+Sobre la implementación:
+
+.. toctree::
+   :maxdepth: 2
+
+   diseno_etapa_1
    modules
 
 Indices
