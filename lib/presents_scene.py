@@ -16,7 +16,7 @@ class PresentsScene(scene.Scene):
         pass
 
     def on_draw(self, screen):
-        screen.blit(self.title, (180, 100))
+        screen.blit(self.title, (180, 20))
 
     def on_event(self, event):
 
