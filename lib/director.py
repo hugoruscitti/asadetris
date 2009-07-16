@@ -15,18 +15,18 @@ class Director:
         self.screen = pygame.display.set_mode((640, 480))
         pygame.display.set_caption("Asadetris - 0.1")
         self.scene = None
+        self.quit_flag = False
 
     def loop(self):
         "Pone en funcionamiento el juego."
 
-        quit = False
 
-        while not quit:
+        while not self.quit_flag:
 
             # propaga eventos
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    quit = True
+                    self.quit()
                 else:
                     self.scene.on_event(event)
 
@@ -43,3 +43,6 @@ class Director:
     def change_scene(self, scene):
         "Altera la escena actual."
         self.scene = scene
+
+    def quit(self):
+        self.quit_flag = True
