@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import scene
 import utils
+import pygame
 
 class PresentsScene(scene.Scene):
     """Representa la escena de introducción al juego donde se muestra el logo.
@@ -18,4 +19,6 @@ class PresentsScene(scene.Scene):
         screen.blit(self.title, (180, 100))
 
     def on_event(self, event):
-        pass
+
+        if event.type in [pygame.KEYDOWN, pygame.MOUSEBUTTONDOWN]:
+            self.director.quit()
