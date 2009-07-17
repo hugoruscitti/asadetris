@@ -31,6 +31,7 @@
 	[_] 0% desarrollar un sistema de fuentes tipograficas
 		[_] crear un directorio para recursos de fuentes tipograficas
 		[_] crear función para cargar e imprimir fuentes
+		[_] mostrar el mensaje "pulse una tecla para salir" en la pantalla principal.
 	[X] proponer un estilo de codificación
 [_] % Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
@@ -55,6 +56,7 @@
 	[_] restringir las rotaciones en los bordes
 	[_] mejorar el sistema de escenas para permitir cambios de una a otra
 	[_] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
+		[_] Imprimir un mensaje que indique esto en la ventana.
 [_] % Etapa 3
 	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
 	: que poder hacer bajar una pieza, que permanezca en el suelo y que
