@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='Asadetris',
       version='0.1',
@@ -9,10 +9,7 @@ setup(name='Asadetris',
       author_email='hugoruscitti@gmail.com',
       url='http://www.losersjuegos.com.ar',
       packages=['lib'],
-
-      #package_dir={'lib': 'images'},
-      #package_data={'lib': ['images/*']},
-      #data_files=[('bitmaps', ['images'])],
+      install_requires=['pygame'],
       scripts=['asadetris'],
      )
 
