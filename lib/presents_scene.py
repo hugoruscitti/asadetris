@@ -11,16 +11,16 @@ class PresentsScene(scene.Scene):
     def __init__(self, director):
         scene.Scene.__init__(self, director)
         self.title, self.rect = utils.load_images("mainmenu/title.png")
-        self.font = utils.load_font("Dejavu.ttf", 20)
-        self.text, self.text_size = utils.render_text('Hola', self.font)
-
+        self.font = utils.load_font("Dejavu.ttf", 40)
+        msg = "Pulse una tecla para salir"
+        self.text, self.text_size = utils.render_text(msg, self.font)
 
     def on_update(self):
         pass
 
     def on_draw(self, screen):
         screen.blit(self.title, (180, 20))
-        screen.blit(self.text, (100,100))
+        screen.blit(self.text, (180, 100))
         
     def on_event(self, event):
 

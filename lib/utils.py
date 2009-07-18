@@ -33,29 +33,22 @@ def load_font(name, size):
 
     try:
         font = pygame.font.Font(fullname, size)
-    except pygame.error, message:
+    except IOError:
         print 'No se ha podido cargar la fuente ', fullname
-        raise message
+        #raise message
 
         font = pygame.font.Font(None, size)
         print 'Cargando tipografía por defecto'
 
     return font
 
-def render_text(text = '', font = None, antialias = False, color = (0,0,0), background = None):
+def render_text(text, font, color=(0,0,0), background=None):
     """Renderiza el texto retornando el texto renderizado y sus dimensiones"""
-    if background != None:
-        try:
-            rendered_text = font.render(text, antialias, color, background)
-        except pygame.error, message:
-            print 'No se ha podido renderizar el texto ', text
-            raise SysExit, message
-            
+    antialias = True
+
+    if background:
+        rendered_text = font.render(text, antialias, color, background)
     else:
-        try:
-            rendered_text = font.render(text, antialias, color)
-        except pygame.error, message:
-            print 'No se ha podido renderizar el texto ', text
-            raise SysExit, message
+        rendered_text = font.render(text, antialias, color)
     
     return rendered_text, font.size(text)
