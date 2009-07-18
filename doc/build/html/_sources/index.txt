@@ -26,6 +26,7 @@ Sobre la implementación:
    :maxdepth: 2
 
    diseno_etapa_1
+   diseno_etapa_2
    modules
 
 Indices
