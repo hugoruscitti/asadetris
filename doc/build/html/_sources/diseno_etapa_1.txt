@@ -166,3 +166,12 @@ todas las scenas son iguales, solo le interesa llamar a los
 De hecho, cuando se quiere cambiar de una escena a la
 otra, es precisamente una escena la que le dice al
 objeto director a que otra escena debe cambiar...
+
+
+Diagrama de clases
+------------------
+
+Al finalizar esta etapa, el diagrama de clases
+simplificado es:
+
+.. image:: images/etapa_1_clases.png
