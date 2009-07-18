@@ -11,7 +11,7 @@ class PresentsScene(scene.Scene):
     def __init__(self, director):
         scene.Scene.__init__(self, director)
         self.title, self.rect = utils.load_images("mainmenu/title.png")
-        self.font = utils.load_font("Dejavu.ttf", 40)
+        self.font = utils.load_font("Dejavu.ttf", 30)
         msg = "Pulse una tecla para salir"
         self.text, self.text_size = utils.render_text(msg, self.font)
 
@@ -20,7 +20,7 @@ class PresentsScene(scene.Scene):
 
     def on_draw(self, screen):
         screen.blit(self.title, (180, 20))
-        screen.blit(self.text, (180, 100))
+        screen.blit(self.text, (180, 190))
         
     def on_event(self, event):
 
