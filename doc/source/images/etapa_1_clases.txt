@@ -1,0 +1,22 @@
+Director
+    screen
+    scene
+
+    loop()
+    change_scene(scene)
+    quit()
+
+Scene
+    director
+    on_update()
+    on_event(event)
+    on_draw(screen)
+
+
+    PresentsScene
+        font
+        text
+        title
+
+        on_draw()
+        on_event()
