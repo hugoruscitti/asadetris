@@ -1,0 +1,10 @@
+Scene
+    director
+    on_update()
+    on_event(event)
+    on_draw(screen)
+
+    GameScene
+        on_draw()
+        on_event(event)
+        on_draw(screen)
