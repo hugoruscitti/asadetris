@@ -58,9 +58,50 @@ anteriores etapas tiene que heredar de <em>Scene</em>:</p>
 <p>Y en pantalla la escena solamente ofrece la posibilidad de mover
 una sola pieza (similar a una letra L) y regresar a la escena
 anterior, la de la etapa 1.</p>
-<p>Esta es una previsualización del diseño visual:</p>
+<p>Esta es una representación preliminar de la pantalla:</p>
 <img alt="_images/etapa_2_en_pantalla.png" src="_images/etapa_2_en_pantalla.png" />
-<p>La parte central, representado por la clase Board, tiene</p>
+</div>
+<div class="section" id="objetos">
+<h2>Objetos<a class="headerlink" href="#objetos" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Esta etapa incorpora dos clases importantes, Board y Piece.</p>
+<div class="section" id="piece">
+<h3>Piece<a class="headerlink" href="#piece" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>La clase Piece representa una pieza del juego. El usuario puede
+mover esta pieza pulsando los direccionales del teclado.</p>
+<p>Internamente la pieza está representada de dos formas, una
+imagen que ve el usuario y una estructura de colisiones similar
+a lo siguiente:</p>
+<div class="highlight-python"><pre>[ ] [X] [ ] [ ]
+[ ] [X] [ ] [ ]
+[ ] [X] [X] [ ]</pre>
+</div>
+<p>De esta forma, es muy sencillo verificar si dos piezas están
+en colisión o constituyen una linea. El juego tiene una
+lógica de estructuras invisibles pero muy simples.</p>
+<p>La siguiente es una imagen que resume la pantalla que ve
+el usuario (a la izquierda) y la representación interna
+del juego con estructuras:</p>
+<img alt="_images/etapa_2_visual_y_logica.png" src="_images/etapa_2_visual_y_logica.png" />
+<p>Tanto la imagen de la izquierda, como el modelo de la derecha, se
+almacenan internamente en el objeto <em>Piece</em>.</p>
+</div>
+<div class="section" id="board">
+<h3>Board<a class="headerlink" href="#board" title="Enlazar permanentemente con este título">¶</a></h3>
+<p>El objeto <em>Board</em> representa el tablero completo, y al igual que
+<em>Piece</em> tiene una estructura invisible al usuario en donde se
+almacenan los bloques utilizados.</p>
+<p>Y también tiene una representación visual, en donde se dibujan
+las piezas que tocan el suelo y el usuario ya no puede mover.</p>
+</div>
+</div>
+<div class="section" id="interacci-n-entre-piece-y-board">
+<h2>Interacción entre Piece y Board<a class="headerlink" href="#interacci-n-entre-piece-y-board" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El objeto <em>Piece</em> responde a las ordenes del usuario, pero a la vez
+tiene que prohibir movimientos incorrectos, ya sea porque salen
+de la pantalla o porque existe una colisión con otra pieza.</p>
+<p>Para manejar las restricciones, el objeto <em>Piece</em> consulta en cada
+momento al objeto <em>Board</em>, y a su vez, <em>Board</em> inspecciona en su
+modelo de matriz si tiene lugar para situar la pieza.</p>
 </div>
 </div>
 
@@ -74,6 +115,12 @@ anterior, la de la etapa 1.</p>
             <ul>
 <li><a class="reference external" href="">Diseño de la etapa 2</a><ul>
 <li><a class="reference external" href="#objetivos-de-la-etapa">Objetivos de la etapa</a></li>
+<li><a class="reference external" href="#objetos">Objetos</a><ul>
+<li><a class="reference external" href="#piece">Piece</a></li>
+<li><a class="reference external" href="#board">Board</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#interacci-n-entre-piece-y-board">Interacción entre Piece y Board</a></li>
 </ul>
 </li>
 </ul>

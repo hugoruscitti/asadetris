@@ -18,11 +18,65 @@ Y en pantalla la escena solamente ofrece la posibilidad de mover
 una sola pieza (similar a una letra L) y regresar a la escena
 anterior, la de la etapa 1.
 
-Esta es una previsualización del diseño visual:
-
+Esta es una representación preliminar de la pantalla:
 
 .. image:: images/etapa_2_en_pantalla.png
 
 
 
-La parte central, representado por la clase Board, tiene 
+Objetos
+-------
+
+Esta etapa incorpora dos clases importantes, Board y Piece.
+
+
+Piece
+~~~~~
+
+La clase Piece representa una pieza del juego. El usuario puede
+mover esta pieza pulsando los direccionales del teclado.
+
+Internamente la pieza está representada de dos formas, una
+imagen que ve el usuario y una estructura de colisiones similar
+a lo siguiente::
+
+    [ ] [X] [ ] [ ]
+    [ ] [X] [ ] [ ]
+    [ ] [X] [X] [ ]
+
+De esta forma, es muy sencillo verificar si dos piezas están
+en colisión o constituyen una linea. El juego tiene una 
+lógica de estructuras invisibles pero muy simples.
+
+La siguiente es una imagen que resume la pantalla que ve
+el usuario (a la izquierda) y la representación interna
+del juego con estructuras:
+
+.. image:: images/etapa_2_visual_y_logica.png
+
+
+Tanto la imagen de la izquierda, como el modelo de la derecha, se
+almacenan internamente en el objeto *Piece*.
+
+
+Board
+~~~~~
+
+El objeto *Board* representa el tablero completo, y al igual que
+*Piece* tiene una estructura invisible al usuario en donde se
+almacenan los bloques utilizados.
+
+Y también tiene una representación visual, en donde se dibujan
+las piezas que tocan el suelo y el usuario ya no puede mover.
+
+
+Interacción entre Piece y Board
+-------------------------------
+
+El objeto *Piece* responde a las ordenes del usuario, pero a la vez
+tiene que prohibir movimientos incorrectos, ya sea porque salen
+de la pantalla o porque existe una colisión con otra pieza.
+
+Para manejar las restricciones, el objeto *Piece* consulta en cada
+momento al objeto *Board*, y a su vez, *Board* inspecciona en su
+modelo de matriz si tiene lugar para situar la pieza.
