@@ -2,7 +2,7 @@
 import scene
 import utils
 import pygame
-# import game_scene
+import game_scene
 
 class Menu:
     def __init__(self, opts, font, color, selected_font, selected_color, margin=0):
@@ -13,7 +13,7 @@ class Menu:
         self.selected_color = selected_color
         self.margin = margin
         
-        self.selected = 0
+        self.selected = utils.JUGAR
         self.imgs_normal = []
         self.imgs_selected = []
         
@@ -64,27 +64,23 @@ class PresentsScene(scene.Scene):
             utils.load_font("FreeSans.ttf", 30), (0, 0, 0),
             utils.load_font("FreeSans.ttf", 30), (255, 255, 255)
         )
-        # msg = "Pulse una tecla para salir"
-        # self.text, self.text_size = utils.render_text(msg, self.font)
 
     def on_update(self):
         pass
 
     def on_draw(self, screen):
         screen.blit(self.title, (180, 20))
-        # screen.blit(self.text, (180, 190))
         self.menu.on_draw(screen, 20 + self.title.get_height() + 40)
         
     def on_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                # scene = game_scene.GameScene(self.director)
-                # self.director.change_scene(scene)
-                if self.menu.selected == 0:
-                    pass # Jugar!
-                elif self.menu.selected == 1:
+                if self.menu.selected == utils.JUGAR:
+                    scene = game_scene.GameScene(self.director)
+                    self.director.change_scene(scene)
+                elif self.menu.selected == utils.CREDITOS:
                     pass # Creditos
-                elif self.menu.selected == 2:
+                elif self.menu.selected == utils.SALIR:
                     self.director.quit()
             elif event.key == pygame.K_UP:
                 self.menu.prev()

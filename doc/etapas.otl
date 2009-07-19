@@ -48,7 +48,7 @@
 	: Hay solo un tipo de pieza (la "L").
 	:
 	[_] Extender el sistema de fuentes
-		[_] crear un directorio para recursos de fuentes tipograficas
+		[X] crear un directorio para recursos de fuentes tipograficas
 		[_] que la función de imprimir cadenas soporte saltos de linea.
 	[_] crear escena de juego
 	[_] crear una ficha
