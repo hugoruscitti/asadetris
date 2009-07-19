@@ -117,7 +117,7 @@ Por ejemplo::
     screen.blit(logo, (x, y))
 
 
-En cambio, nos nombres de clases se definen usando el estilo *CamelCase*, 
+En cambio, los nombres de clases se definen usando el estilo *CamelCase*, 
 donde cada palabra se distingue de otra usando una mayúscula::
 
     class SimpleAnimation(Animation):

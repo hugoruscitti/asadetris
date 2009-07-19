@@ -3,6 +3,13 @@
 import pygame
 import os
 
+
+
+"""Definimos las constantes"""
+JUGAR = 0
+CREDITOS = 1
+SALIR = 2
+
 DATOS = os.path.dirname(os.path.abspath(__file__))
 
 def load_images(name, colorkey = False):
