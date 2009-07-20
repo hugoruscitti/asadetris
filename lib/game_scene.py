@@ -24,6 +24,6 @@ class GameScene(scene.Scene):
     def on_event(self, event):
 
         if event.type == pygame.KEYDOWN:
-			if event.key == pygame.K_ESCAPE:
-				scene = presents_scene.PresentsScene(self.director)
-				self.director.change_scene(scene)
+            if event.key == pygame.K_ESCAPE:
+                scene = presents_scene.PresentsScene(self.director)
+                self.director.change_scene(scene)
