@@ -20,7 +20,6 @@ class Director:
     def loop(self):
         "Pone en funcionamiento el juego."
 
-
         while not self.quit_flag:
 
             # propaga eventos
