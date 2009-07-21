@@ -3,6 +3,7 @@ import scene
 import utils
 import pygame
 import game_scene
+import credits_scene
 
 class Menu:
     def __init__(self, opts, font, color, selected_font, selected_color, margin=0):
@@ -73,13 +74,16 @@ class PresentsScene(scene.Scene):
         self.menu.on_draw(screen, 20 + self.title.get_height() + 40)
         
     def on_event(self, event):
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.QUIT:
+            self.director.quit()
+        elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 if self.menu.selected == utils.JUGAR:
                     scene = game_scene.GameScene(self.director)
                     self.director.change_scene(scene)
                 elif self.menu.selected == utils.CREDITOS:
-                    pass # Creditos
+                    scene = credits_scene.CreditScene(self.director)
+                    self.director.change_scene(scene)
                 elif self.menu.selected == utils.SALIR:
                     self.director.quit()
             elif event.key == pygame.K_UP:
