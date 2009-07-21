@@ -20,6 +20,7 @@ class GameScene(scene.Scene):
 
     def on_update(self):
         self.board.update()
+        self.pieces.update()
 
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
