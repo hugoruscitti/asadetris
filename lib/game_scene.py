@@ -27,8 +27,9 @@ class GameScene(scene.Scene):
         #self.board.draw(screen)
 
     def on_event(self, event):
-
-        if event.type == pygame.KEYDOWN:
+        if event.type == pygame.QUIT:
+            self.director.quit()
+        elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._return_to_main_menu()
 
