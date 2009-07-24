@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pygame
 import utils
+import os
 
 LEFT_CORNER = 223
 TOP_CORNER = 97
@@ -32,8 +33,8 @@ class Piece(pygame.sprite.Sprite):
         de este archivo se convierte en una lista de matrices
         dentro de esta función.
         """
-
-        handler = file("../mask/p2.txt", "rt")
+        dirname = os.path.dirname(os.path.abspath(__file__))
+        handler = file(os.path.join(dirname, "../mask/p2.txt"), "rt")
         content = handler.readlines()
 
         self.matrix_list = [
