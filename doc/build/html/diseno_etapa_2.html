@@ -103,6 +103,34 @@ de la pantalla o porque existe una colisión con otra pieza.</p>
 momento al objeto <em>Board</em>, y a su vez, <em>Board</em> inspecciona en su
 modelo de matriz si tiene lugar para situar la pieza.</p>
 </div>
+<div class="section" id="inicializaci-n-de-piezas">
+<h2>Inicialización de piezas<a class="headerlink" href="#inicializaci-n-de-piezas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cada pieza tiene una forma que está compuesta por bloques que
+colisionan, y otros que no.</p>
+<p>La forma de estas piezas se encuentra en archivos separados, uno
+por cada pieza, y se almacenan todos en el directorio <em>mask</em>.</p>
+<p>Este es un ejemplo de la figura &#8220;L&#8221;, el archivo tiene marcado
+con <em>x</em> los bloques que colisionan:</p>
+<div class="highlight-python"><pre>..x.
+xxx.
+....
+
+.x..
+.x..
+.xx.
+....
+
+....
+xxx.
+x...
+....
+
+xx..
+.x..
+.x..
+....</pre>
+</div>
+</div>
 </div>
 
 
@@ -121,6 +149,7 @@ modelo de matriz si tiene lugar para situar la pieza.</p>
 </ul>
 </li>
 <li><a class="reference external" href="#interacci-n-entre-piece-y-board">Interacción entre Piece y Board</a></li>
+<li><a class="reference external" href="#inicializaci-n-de-piezas">Inicialización de piezas</a></li>
 </ul>
 </li>
 </ul>

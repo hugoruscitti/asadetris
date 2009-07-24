@@ -80,3 +80,37 @@ de la pantalla o porque existe una colisión con otra pieza.
 Para manejar las restricciones, el objeto *Piece* consulta en cada
 momento al objeto *Board*, y a su vez, *Board* inspecciona en su
 modelo de matriz si tiene lugar para situar la pieza.
+
+
+Inicialización de piezas
+------------------------
+
+Cada pieza tiene una forma que está compuesta por bloques que
+colisionan, y otros que no.
+
+La forma de estas piezas se encuentra en archivos separados, uno
+por cada pieza, y se almacenan todos en el directorio *mask*.
+
+Este es un ejemplo de la figura "L", el archivo tiene marcado
+con *x* los bloques que colisionan::
+
+
+    ..x.
+    xxx.
+    ....
+
+    .x..
+    .x..
+    .xx.
+    ....
+
+    ....
+    xxx.
+    x...
+    ....
+
+    xx..
+    .x..
+    .x..
+    ....
+
