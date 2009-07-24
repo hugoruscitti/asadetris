@@ -17,6 +17,8 @@ class Director:
         self.scene = None
         self.quit_flag = False
 
+        pygame.key.set_repeat(100, 100)
+
     def loop(self):
         "Pone en funcionamiento el juego."
 
