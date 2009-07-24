@@ -32,7 +32,7 @@
 		[X] crear función para cargar e imprimir fuentes
 		[X] mostrar el mensaje "pulse una tecla para salir" en la pantalla principal.
 	[X] proponer un estilo de codificación
-[_] % Etapa 2
+[_] 66% Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
 	: tiene que poder mover una pieza por la pantalla usando los
 	: direccionales del teclado y rotar las mismas con las teclas 'x' y
@@ -50,15 +50,18 @@
 	[_] Extender el sistema de fuentes
 		[X] crear un directorio para recursos de fuentes tipograficas
 		[_] que la función de imprimir cadenas soporte saltos de linea.
-	[_] crear escena de juego
-	[_] crear una ficha
-	[_] permitir el movimiento de la ficha
+	[X] crear escena de juego
+	[X] crear una ficha
+	[X] permitir el movimiento de la ficha
 	[_] aplicar restricciones de movimiento como los bordes
-	[_] implementar las rotaciones hacia izquiera o derecha
+		[X] colisiones sencillas con el centro de la pieza.
+		[_] colisiones logradas con los bordes.
+	[X] implementar las rotaciones hacia izquiera o derecha
 	[_] restringir las rotaciones en los bordes
-	[_] mejorar el sistema de escenas para permitir cambios de una a otra
+	[X] mejorar el sistema de escenas para permitir cambios de una a otra
 	[_] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
 		[_] Imprimir un mensaje que indique esto en la ventana.
+		[_] Asignar el cambio a la tecla ESCAPE.
 [_] % Etapa 3
 	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
 	: que poder hacer bajar una pieza, que permanezca en el suelo y que
