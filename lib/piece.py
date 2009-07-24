@@ -16,7 +16,12 @@ class Piece(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.letter = letter
         self.load_images("pieces/p2.png")
+        self.load_matrix()
         self.set_frame(0)
+
+    def load_matrix(self):
+        self.matrix_list = [1, 2, 3, 4]
+
 
     def load_images(self, path):
         image, rect = utils.load_images(path, True)
@@ -28,6 +33,7 @@ class Piece(pygame.sprite.Sprite):
     def set_frame(self, index):
         self.image = self.frames[index]
         self.frame_index = index
+        self.matrix = self.matrix_list[index]
 
     def update(self):
         pass
@@ -53,10 +59,10 @@ class Piece(pygame.sprite.Sprite):
         elif event.key == pygame.K_RIGHT:
             self.move(1, 0)
 
-        if event.key == pygame.K_a:
+        if event.key == pygame.K_z:
             self.rotate_to_left()
+        elif event.key == pygame.K_x:
+            self.rotate_to_right()
 
         if event.key == pygame.K_DOWN:
             self.move(0, 1)
-
-
