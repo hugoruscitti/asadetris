@@ -16,7 +16,7 @@ class GameScene(scene.Scene):
         self.board = board.Board()
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = pygame.sprite.RenderUpdates()
-        self.pieces.add(piece.Piece())
+        self.pieces.add(piece.Piece(self.board))
 
     def on_update(self):
         self.board.update()
