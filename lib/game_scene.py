@@ -33,6 +33,13 @@ class GameScene(scene.Scene):
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._return_to_main_menu()
+            else:
+                self.emit_on_key_down_event_to_pieces(event)
+
+    def emit_on_key_down_event_to_pieces(self, event):
+        for piece in self.pieces.sprites():
+            piece.on_key_down_event(event)
+
 
     def _return_to_main_menu(self):
         import presents_scene

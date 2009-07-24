@@ -6,7 +6,6 @@ LEFT_CORNER = 223
 TOP_CORNER = 97
 
 
-
 "Constantes"
 PIECE_L, PIECE_O, PIECE_T, PIECE_S, PIECE_Z, PIECE_J, PIECE_I = range(7)
 
@@ -31,42 +30,33 @@ class Piece(pygame.sprite.Sprite):
         self.frame_index = index
 
     def update(self):
-        key = pygame.key.get_pressed()
-
-        if key[pygame.K_LEFT]:
-            self.move(-1, 0)
-        elif key[pygame.K_RIGHT]:
-            self.move(1, 0)
-
-        if key[pygame.K_DOWN]:
-            self.move(0, 1)
-        elif key[pygame.K_UP]:
-            self.move(0, -1)
-
-        if key[pygame.K_z]:
-            self.rotate_to_left()
-        elif key[pygame.K_x]:
-            self.rotate_to_right()
+        pass
 
     def move(self, dx, dy):
         self.rect.move_ip(dx * 20, dy * 20)
-        # TODO: quitar este delay...
-        pygame.time.delay(100)
 
     def rotate_to_left(self):
         self.rotate(-1)
-        # TODO: quitar este delay...
-        pygame.time.delay(100)
 
     def rotate_to_right(self):
         self.rotate(1)
-        # TODO: quitar este delay...
-        pygame.time.delay(100)
-        
 
     def rotate(self, delta):
         self.frame_index = (self.frame_index + delta) % 4
         self.set_frame(self.frame_index)
-
         
+    def on_key_down_event(self, event):
+        """Gestiona la pulsación de teclas para controlar la pieza."""
+
+        if event.key == pygame.K_LEFT:
+            self.move(-1, 0)
+        elif event.key == pygame.K_RIGHT:
+            self.move(1, 0)
+
+        if event.key == pygame.K_a:
+            self.rotate_to_left()
+
+        if event.key == pygame.K_DOWN:
+            self.move(0, 1)
+
 
