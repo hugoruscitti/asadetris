@@ -20,8 +20,62 @@ class Piece(pygame.sprite.Sprite):
         self.set_frame(0)
 
     def load_matrix(self):
-        self.matrix_list = [1, 2, 3, 4]
+        """Carga todos los mapas de colision para la pieza.
 
+        Inicialmente las piezas tienen asignado un archivo de texto
+        que se almacena en el directorio 'mask'. El contenido
+        de este archivo se convierte en una lista de matrices
+        dentro de esta función.
+        """
+
+        handler = file("../mask/p2.txt", "rt")
+        content = handler.readlines()
+
+        self.matrix_list = [
+                self.create_mask(content[0:4]),
+                self.create_mask(content[5:9]),
+                self.create_mask(content[10:14]),
+                self.create_mask(content[15:19]),
+                ]
+
+        handler.close()
+
+    def create_mask(self, initial_mask):
+        """Convierte una matriz de texto en una matriz numérica.
+
+        Esta conversión realiza algo similar a lo siguiente::
+
+            '..x.\n'          [0, 0, 1, 0]
+            'xxx.\n'     -->  [1, 1, 1, 0]
+            '....\n'     -->  [0, 0, 0, 0]
+            '....\n'          [0, 0, 0, 0]
+
+        La matriz de texto de la izquierda es útil para manipular
+        desde un archivo de texto, pero la segunda es mas fácil
+        de utilizar desde el código para hacer verificaciones.
+
+        Esta función permite que los desarrolladores puedan definir
+        las formas de fichas de manera sencilla desde un editor (estructura
+        de la izquierda) y luego puedan convertirlas a datos mas
+        fáciles de manipular dentro del código (estructura de la derecha).
+        """
+
+        matrix = []
+
+        for line in initial_mask:
+            new_line = []
+
+            for c in line.strip():
+                if c in ['x', 'X']:
+                    new_line.append(1)
+                else:
+                    new_line.append(0)
+
+            matrix.append(new_line)
+                
+        return matrix
+
+        
 
     def load_images(self, path):
         image, rect = utils.load_images(path, True)
@@ -34,6 +88,15 @@ class Piece(pygame.sprite.Sprite):
         self.image = self.frames[index]
         self.frame_index = index
         self.matrix = self.matrix_list[index]
+
+        print "Usando la siguiente matriz de colisión:"
+        self._print_matrix(self.matrix)
+        print ""
+
+    def _print_matrix(self, matrix):
+        "Imprime una matriz a modo de depuración."
+        for line in matrix:
+            print line
 
     def update(self):
         pass
