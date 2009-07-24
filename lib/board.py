@@ -40,3 +40,15 @@ class Board:
             board.append(line)
 
         return board
+
+    def can_put_this_piece_here(self, row, col, mask):
+        """Informa si una pieza se puede colocar en una determinada posición.
+
+        Este método evalua las colisiones de una pieza ante un posible
+        movimiento."""
+
+        if -1 < col < 10:
+            if row < 18:
+                return True
+
+        return False

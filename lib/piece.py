@@ -12,12 +12,17 @@ PIECE_L, PIECE_O, PIECE_T, PIECE_S, PIECE_Z, PIECE_J, PIECE_I = range(7)
 class Piece(pygame.sprite.Sprite):
     """Representa una pieza del tetris"""
 
-    def __init__(self, letter = PIECE_L):
+    def __init__(self, board, letter = PIECE_L):
         pygame.sprite.Sprite.__init__(self)
+        self.board = board
         self.letter = letter
         self.load_images("pieces/p2.png")
         self.load_matrix()
         self.set_frame(0)
+
+        self.position_row = 0
+        self.position_col = 5
+        self.update_position_rect()
 
     def load_matrix(self):
         """Carga todos los mapas de colision para la pieza.
@@ -75,14 +80,11 @@ class Piece(pygame.sprite.Sprite):
                 
         return matrix
 
-        
-
     def load_images(self, path):
         image, rect = utils.load_images(path, True)
         w = rect.w / 4
         h = rect.h
         self.frames = [image.subsurface(x * w, 0, w, h) for x in range(0, 4)]
-        self.rect = pygame.Rect(LEFT_CORNER + 20 * 3, TOP_CORNER, w, h)
 
     def set_frame(self, index):
         self.image = self.frames[index]
@@ -102,7 +104,25 @@ class Piece(pygame.sprite.Sprite):
         pass
 
     def move(self, dx, dy):
-        self.rect.move_ip(dx * 20, dy * 20)
+        if self.can_move(dx, dy):
+            self.position_col += dx
+            self.position_row += dy
+            self.update_position_rect()
+
+    def can_move(self, dx, dy):
+        """Informa si puede mover relativamente una pieza."""
+        row = self.position_row + dy
+        col = self.position_col + dx
+
+        return self.board.can_put_this_piece_here(row, col, self.matrix)
+
+    def update_position_rect(self):
+        x = (self.position_col -1) * 20
+        y = (self.position_row - 1) * 20
+        w = 80
+        h = 80
+
+        self.rect = pygame.Rect(LEFT_CORNER + x, TOP_CORNER + y, w, h)
 
     def rotate_to_left(self):
         self.rotate(-1)
