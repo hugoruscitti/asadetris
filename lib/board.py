@@ -8,35 +8,23 @@ class Board:
 
     def __init__(self):
         self.pieces = []
-        #self.active_piece = Piece((240,0))
-        self.game_rect = pygame.Rect(220, 80, 200, 380)
-        self.board = self.init_board(10,19)
+        self.matrix = self.init_matrix(10, 18)
 
     def update(self):
         pass
-        #self.active_piece.update()
-
-        #if self.active_piece.on_ground():
-        #    self.pieces.append(self.active_piece)
-        #    self.active_piece = Piece((240,0))
-
 
     def draw(self, screen):
         pass
-        #screen.fill((0,0,0), self.game_rect)
 
-        #self.active_piece.draw(screen)
-
-        #for piece in self.pieces:
-        #    piece.draw(screen)
-
-    def init_board(self, cells_width, cells_height):
+    def init_matrix(self, cells_width, cells_height):
         board = []
 
         for y in range(cells_height):
             line = []
+
             for x in range(cells_width):
-                line.append(' ')
+                line.append(0)
+
             board.append(line)
 
         return board
@@ -47,8 +35,13 @@ class Board:
         Este método evalua las colisiones de una pieza ante un posible
         movimiento."""
 
-        if -1 < col < 10:
-            if row < 18:
-                return True
+        for delta_row in range(0, 4):
+            for delta_column in range(0, 4):
 
-        return False
+                if mask[delta_row][delta_column]:
+                    dst_col = col - delta_column - 1
+
+        # compara la máscara de la pieza con la matriz del tablero.
+
+
+        return True
