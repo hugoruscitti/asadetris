@@ -87,7 +87,7 @@ a la planificación.</p>
 		[X] crear función para cargar e imprimir fuentes
 		[X] mostrar el mensaje "pulse una tecla para salir" en la pantalla principal.
 	[X] proponer un estilo de codificación
-[_] % Etapa 2
+[_] 88% Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
 	: tiene que poder mover una pieza por la pantalla usando los
 	: direccionales del teclado y rotar las mismas con las teclas 'x' y
@@ -105,41 +105,44 @@ a la planificación.</p>
 	[_] Extender el sistema de fuentes
 		[X] crear un directorio para recursos de fuentes tipograficas
 		[_] que la función de imprimir cadenas soporte saltos de linea.
-	[_] crear escena de juego
-	[_] crear una ficha
-	[_] permitir el movimiento de la ficha
-	[_] aplicar restricciones de movimiento como los bordes
-	[_] implementar las rotaciones hacia izquiera o derecha
-	[_] restringir las rotaciones en los bordes
-	[_] mejorar el sistema de escenas para permitir cambios de una a otra
+	[X] crear escena de juego
+	[X] crear una ficha
+	[X] permitir el movimiento de la ficha
+	[X] aplicar restricciones de movimiento como los bordes
+		[X] colisiones sencillas con el centro de la pieza.
+		[X] colisiones logradas con los bordes.
+	[X] implementar las rotaciones hacia izquiera o derecha
+	[X] restringir las rotaciones en los bordes
+	[X] mejorar el sistema de escenas para permitir cambios de una a otra
 	[_] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
 		[_] Imprimir un mensaje que indique esto en la ventana.
+		[X] Asignar el cambio a la tecla ESCAPE.
 [_] % Etapa 3
 	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
 	: que poder hacer bajar una pieza, que permanezca en el suelo y que
 	: llegue otra nueva para poder mover.
 	:
-	: Al igual que la etapa anterior tiene que haber una sola pieza, la "L".
+	: En esta etapa ya caen desde la parte superior de escenario el resto
+	: de las fichas, no solo las 'L'.
 	:
 	: Cuando el usuario llegue arriba se tiene que imprimir algún mensaje
 	: y cambiar de escena.
 	:
-	: No se pueden hacer lineas en esta versión.
+	: No se pueden hacer lineas en esta versión, solamente apilar.
+	:
 	[_] Detener piezas cuando llegan abajo
 	[_] Crear nuevas piezas cuando deja una en el suelo
 	[_] implementar colisiones entre las piezas
 	[_] crear las piezas que faltan y mostrarlas aleatoriamente
+	[_] permitir que el usuario pueda bajar una pieza directe (y no progresivamente)
 [_] % Etapa 4
-	: Aquí se implementan dos grandes mejoras, la creación de lineas y las
-	: diferentes piezas.
-	:
-	: El usuario ahora puede jugar, aunque no tiene puntaje ni animaciones.
-	:
-[_] 	
-	[_] crear animación a la elimianción de lineas
+	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[_] implementar puntajes
+	[_] crear sonidos
+[_] % Etapa 5
+	: Se agregan mejoras como las animaciones
+	[_] crear animación a la elimianción de lineas
 	[_] aplicar animaciones a la rotación de las piezas
-[_] 
 </pre>
 </div>
 </div>
