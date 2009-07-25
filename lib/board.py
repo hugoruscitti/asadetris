@@ -39,9 +39,16 @@ class Board:
             for delta_column in range(0, 4):
 
                 if mask[delta_row][delta_column]:
-                    dst_col = col - delta_column - 1
+                    dst_col = col - 1 + delta_column
+                    dst_row = row - 1 + delta_row
 
-        # compara la máscara de la pieza con la matriz del tablero.
+                    if dst_col < 0:
+                        return False
 
+                    try:
+                        if self.matrix[dst_row][dst_col]:
+                            return False
+                    except IndexError:
+                        return False
 
         return True

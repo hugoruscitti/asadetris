@@ -21,7 +21,7 @@ class Piece(pygame.sprite.Sprite):
         self.load_matrix()
         self.set_frame(0)
 
-        self.position_row = 0
+        self.position_row = 1
         self.position_col = 5
         self.update_position_rect()
 
@@ -132,8 +132,19 @@ class Piece(pygame.sprite.Sprite):
         self.rotate(1)
 
     def rotate(self, delta):
-        self.frame_index = (self.frame_index + delta) % 4
-        self.set_frame(self.frame_index)
+        posible_next_matrix = self.get_matrix_for_rotation(delta)
+        row = self.position_row
+        col = self.position_col
+
+        if self.board.can_put_this_piece_here(row, col, posible_next_matrix):
+            self.frame_index = (self.frame_index + delta) % 4
+            self.set_frame(self.frame_index)
+        else:
+            print "Evitando rotar, la pieza no tiene espacio para girar."
+
+    def get_matrix_for_rotation(self, delta):
+        next_rotation_index = (self.frame_index + delta) % 4
+        return self.matrix_list[next_rotation_index]
         
     def on_key_down_event(self, event):
         """Gestiona la pulsación de teclas para controlar la pieza."""
