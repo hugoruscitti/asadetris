@@ -17,6 +17,12 @@ class GameScene(scene.Scene):
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = pygame.sprite.RenderUpdates()
         self.pieces.add(piece.Piece(self.board))
+        self.create_return_message()
+
+    def create_return_message(self):
+        font = utils.load_font("FreeSans.ttf", 14)
+        text = "Pulse ESC para regresar al menu"
+        self.return_message, rect = utils.render_text(text, font)
 
     def on_update(self):
         self.board.update()
@@ -25,7 +31,7 @@ class GameScene(scene.Scene):
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
         self.pieces.draw(screen)
-        #self.board.draw(screen)
+        screen.blit(self.return_message, (8, 460))
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
