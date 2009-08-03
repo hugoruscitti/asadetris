@@ -32,7 +32,7 @@
 		[X] crear función para cargar e imprimir fuentes
 		[X] mostrar el mensaje "pulse una tecla para salir" en la pantalla principal.
 	[X] proponer un estilo de codificación
-[_] 94% Etapa 2
+[X] 100% Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
 	: tiene que poder mover una pieza por la pantalla usando los
 	: direccionales del teclado y rotar las mismas con las teclas 'x' y
@@ -47,9 +47,9 @@
 	:
 	: Hay solo un tipo de pieza (la "L").
 	:
-	[_] Extender el sistema de fuentes
+	[X] Extender el sistema de fuentes
 		[X] crear un directorio para recursos de fuentes tipograficas
-		[_] que la función de imprimir cadenas soporte saltos de linea.
+		[X] que la función de imprimir cadenas soporte saltos de linea.
 	[X] crear escena de juego
 	[X] crear una ficha
 	[X] permitir el movimiento de la ficha
