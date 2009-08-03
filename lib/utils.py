@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import pygame
 import os
 
@@ -52,10 +51,30 @@ def load_font(name, size):
 def render_text(text, font, color=(0,0,0), background=None):
     """Renderiza el texto retornando el texto renderizado y sus dimensiones"""
     antialias = True
+    interline = 5               # Distancia entre lineas
+    lines = []
 
-    if background:
-        rendered_text = font.render(text, antialias, color, background)
-    else:
-        rendered_text = font.render(text, antialias, color)
+    # Genera una lista con todas las lineas de texto.
+    for line in text.split('\n'):
+
+        if background:
+            rendered_text = font.render(line, antialias, color, background)
+        else:
+            rendered_text = font.render(line, antialias, color)
+
+        lines.append(rendered_text)
     
-    return rendered_text, font.size(text)
+    # calcula el tamaño de la imagen final.
+    width = max([s.get_width() for s in lines])
+    height = sum([s.get_height() + interline for s in lines])
+
+    # genera y agrupa todas las imagenes de las lineas de texto.
+    image = pygame.Surface((width, height), pygame.SRCALPHA, 32)
+
+    dst_y = 0
+
+    for line in lines:
+        image.blit(line, (0, dst_y))
+        dst_y += interline + line.get_height()
+
+    return image, (width, height)
