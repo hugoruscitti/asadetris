@@ -62,7 +62,7 @@
 	[X] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
 		[X] Imprimir un mensaje que indique esto en la ventana.
 		[X] Asignar el cambio a la tecla ESCAPE.
-[_] % Etapa 3
+[_] 60% Etapa 3
 	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
 	: que poder hacer bajar una pieza, que permanezca en el suelo y que
 	: llegue otra nueva para poder mover.
@@ -75,11 +75,12 @@
 	:
 	: No se pueden hacer lineas en esta versión, solamente apilar.
 	:
-	[_] Detener piezas cuando llegan abajo
-	[_] Crear nuevas piezas cuando deja una en el suelo
+	[X] Detener piezas cuando llegan abajo
+	[X] Crear nuevas piezas cuando deja una en el suelo
 	[_] Implementar colisiones entre las piezas
 	[_] Crear las piezas que faltan y mostrarlas aleatoriamente
-	[_] Permitir que el usuario pueda bajar una pieza directamente (y no progresivamente)
+	[X] Permitir que el usuario pueda bajar una pieza directamente (y no progresivamente)
+		: se agrega la tecla SPACE al control del juego.
 [_] % Etapa 4
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[_] implementar puntajes
