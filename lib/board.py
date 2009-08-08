@@ -14,7 +14,17 @@ class Board:
     def update(self):
         pass
 
+    def draw_block(self, row, col, screen):
+        # TODO: posicionar correctamente el rectangulo en
+        #       base a la posicion del tablero.
+        color = (200, 200, 0)
+        screen.fill(color, (col * 20, row * 20, 20, 20))
+
     def draw(self, screen):
+        # TODO: leer la matriz de colisiones y dibujar un bloque
+        #       cada celda con 1 (colisionable)
+        
+        #self.draw_block(10, 10, screen)
         pass
 
     def init_matrix(self, cells_width, cells_height):
