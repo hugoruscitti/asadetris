@@ -54,5 +54,19 @@ class Board:
 
         return True
 
+    def put_one_piece_here(self, row, col, mask):
+        for delta_row in range(0, 4):
+            for delta_column in range(0, 4):
+
+                if mask[delta_row][delta_column]:
+                    dst_col = col - 1 + delta_column
+                    dst_row = row - 1 + delta_row
+
+                    self.matrix[dst_row][dst_col] = mask[delta_row][delta_column]
+
+        print "Asi queda la matriz luego de colocar la pieza."
+        import pprint
+        pprint.pprint(self.matrix)
+
     def go_to_next_piece(self):
         self.gamescene.go_to_next_scene()
