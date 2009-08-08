@@ -13,9 +13,9 @@ class GameScene(scene.Scene):
 
     def __init__(self, director):
         scene.Scene.__init__(self, director)
-        self.board = board.Board()
+        self.board = board.Board(self)
         self.background, tmp = utils.load_images("gamescene/background.png")
-        self.pieces = pygame.sprite.RenderUpdates()
+        self.pieces = pygame.sprite.GroupSingle()
         self.pieces.add(piece.Piece(self.board))
         self.create_return_message()
 
@@ -46,9 +46,11 @@ class GameScene(scene.Scene):
         for piece in self.pieces.sprites():
             piece.on_key_down_event(event)
 
-
     def _return_to_main_menu(self):
         import presents_scene
 
         scene = presents_scene.PresentsScene(self.director)
         self.director.change_scene(scene)
+
+    def go_to_next_scene(self):
+        self.pieces.add(piece.Piece(self.board))

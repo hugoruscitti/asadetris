@@ -108,6 +108,7 @@ class Piece(pygame.sprite.Sprite):
         else:
             if dy > 0:
                 print "Ha llegado al suelo."
+                self.board.go_to_next_piece()
 
     def can_move(self, dx, dy):
         """Informa si puede mover relativamente una pieza."""
@@ -166,6 +167,7 @@ class Piece(pygame.sprite.Sprite):
 
     def inmediate_fall(self):
         "Hace caer la ficha inmediatamente."
+
         while self.can_move(0, 1):
             self.move(0, 1)
 
