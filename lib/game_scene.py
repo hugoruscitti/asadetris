@@ -31,6 +31,7 @@ class GameScene(scene.Scene):
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
         self.pieces.draw(screen)
+        self.board.draw(screen)
         screen.blit(self.return_message, (8, 460))
 
     def on_event(self, event):
