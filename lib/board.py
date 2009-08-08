@@ -6,9 +6,10 @@ import utils
 class Board:
     "Representa el tablero donde se muestran las fichas"
 
-    def __init__(self):
+    def __init__(self, gamescene):
         self.pieces = []
         self.matrix = self.init_matrix(10, 18)
+        self.gamescene = gamescene
 
     def update(self):
         pass
@@ -52,3 +53,6 @@ class Board:
                         return False
 
         return True
+
+    def go_to_next_piece(self):
+        self.gamescene.go_to_next_scene()
