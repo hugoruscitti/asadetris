@@ -77,9 +77,9 @@
 	:
 	[_] Detener piezas cuando llegan abajo
 	[_] Crear nuevas piezas cuando deja una en el suelo
-	[_] implementar colisiones entre las piezas
-	[_] crear las piezas que faltan y mostrarlas aleatoriamente
-	[_] permitir que el usuario pueda bajar una pieza directe (y no progresivamente)
+	[_] Implementar colisiones entre las piezas
+	[_] Crear las piezas que faltan y mostrarlas aleatoriamente
+	[_] Permitir que el usuario pueda bajar una pieza directamente (y no progresivamente)
 [_] % Etapa 4
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[_] implementar puntajes
