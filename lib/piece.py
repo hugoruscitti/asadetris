@@ -92,10 +92,6 @@ class Piece(pygame.sprite.Sprite):
         self.frame_index = index
         self.matrix = self.matrix_list[index]
 
-        print "Usando la siguiente matriz de colisión:"
-        self._print_matrix(self.matrix)
-        print ""
-
     def _print_matrix(self, matrix):
         "Imprime una matriz a modo de depuración."
         for line in matrix:
@@ -109,6 +105,9 @@ class Piece(pygame.sprite.Sprite):
             self.position_col += dx
             self.position_row += dy
             self.update_position_rect()
+        else:
+            if dy > 0:
+                print "Ha llegado al suelo."
 
     def can_move(self, dx, dy):
         """Informa si puede mover relativamente una pieza."""
@@ -161,3 +160,13 @@ class Piece(pygame.sprite.Sprite):
 
         if event.key == pygame.K_DOWN:
             self.move(0, 1)
+
+        if event.key == pygame.K_SPACE:
+            self.inmediate_fall()
+
+    def inmediate_fall(self):
+        "Hace caer la ficha inmediatamente."
+        while self.can_move(0, 1):
+            self.move(0, 1)
+
+        self.move(0, 1)
