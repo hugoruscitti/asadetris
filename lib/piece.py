@@ -6,16 +6,16 @@ from config import LEFT_CORNER, TOP_CORNER
 
 
 "Constantes"
-PIECE_L, PIECE_O, PIECE_T, PIECE_S, PIECE_Z, PIECE_J, PIECE_I = range(7)
+PIECE_I, PIECE_J, PIECE_L, PIECE_O, PIECE_S, PIECE_T, PIECE_Z = range(7)
 
 class Piece(pygame.sprite.Sprite):
     """Representa una pieza del tetris"""
 
-    def __init__(self, board, letter = PIECE_L):
+    def __init__(self, board, letter = PIECE_J):
         pygame.sprite.Sprite.__init__(self)
         self.board = board
         self.letter = letter
-        self.load_images("pieces/p2.png")
+        self.load_images("pieces/p" + str(self.letter) + ".png")
         self.load_matrix()
         self.set_frame(0)
 
@@ -32,7 +32,7 @@ class Piece(pygame.sprite.Sprite):
         dentro de esta función.
         """
         dirname = os.path.dirname(os.path.abspath(__file__))
-        handler = file(os.path.join(dirname, "../mask/p2.txt"), "rt")
+        handler = file(os.path.join(dirname, "../mask/p" + str(self.letter) + ".txt"), "rt")
         content = handler.readlines()
 
         self.matrix_list = [
