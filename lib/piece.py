@@ -153,6 +153,10 @@ class Piece(pygame.sprite.Sprite):
         elif event.key == pygame.K_RIGHT:
             self.move(1, 0)
 
+
+        if event.key == pygame.K_UP:
+            self.rotate_to_left()
+
         if event.key == pygame.K_z:
             self.rotate_to_left()
         elif event.key == pygame.K_x:
