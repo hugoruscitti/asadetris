@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pygame
 import utils
+from config import LEFT_CORNER, TOP_CORNER
 
 
 class Board:
@@ -8,26 +9,22 @@ class Board:
 
     def __init__(self, gamescene):
         self.pieces = []
+        self.visual_matrix = pygame.Surface((10 * 20, 18 * 20), pygame.SRCALPHA, 32)
         self.matrix = self.init_matrix(10, 18)
         self.gamescene = gamescene
 
     def update(self):
         pass
 
-    def draw_block(self, row, col, screen):
-        # TODO: posicionar correctamente el rectangulo en
-        #       base a la posicion del tablero.
+    def draw_block(self, row, col):
         color = (200, 200, 0)
-        screen.fill(color, (col * 20, row * 20, 20, 20))
+        self.visual_matrix.fill(color, (col * 20, row * 20, 20, 20))
 
     def draw(self, screen):
-        # TODO: leer la matriz de colisiones y dibujar un bloque
-        #       cada celda con 1 (colisionable)
-        
-        #self.draw_block(10, 10, screen)
-        pass
+        screen.blit(self.visual_matrix, (LEFT_CORNER, TOP_CORNER))
 
     def init_matrix(self, cells_width, cells_height):
+        "Inicializa la matriz de colisiones invisible al usuario."
         board = []
 
         for y in range(cells_height):
@@ -65,6 +62,8 @@ class Board:
         return True
 
     def put_one_piece_here(self, row, col, mask):
+        """Suelta una pieza en determinada parte del escenario."""
+
         for delta_row in range(0, 4):
             for delta_column in range(0, 4):
 
@@ -73,6 +72,7 @@ class Board:
                     dst_row = row - 1 + delta_row
 
                     self.matrix[dst_row][dst_col] = mask[delta_row][delta_column]
+                    self.draw_block(dst_row, dst_col)
 
         print "Asi queda la matriz luego de colocar la pieza."
         import pprint

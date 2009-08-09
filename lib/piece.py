@@ -2,9 +2,7 @@
 import pygame
 import utils
 import os
-
-LEFT_CORNER = 223
-TOP_CORNER = 97
+from config import LEFT_CORNER, TOP_CORNER
 
 
 "Constantes"
