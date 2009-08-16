@@ -102,6 +102,9 @@
 	[_] crear animación a la elimianción de lineas
 	[_] aplicar animaciones a la rotación de las piezas
 	[_] soporte para jugar con joystick.
+	[_] probar en otros sistemas operativos como windows.
+	[_] genera version ejecutable en formato .exe
+[_] % Etapa 6
 	[_] permitir que el usuario use el mouse para seleccionar en el menu.
 	[_] crear la escena de ayuda explicando los controles.
 	[_] crear la esacena de configuración del juego
@@ -112,3 +115,4 @@
 	[_] administrar los puntajes del juego
 		[_] crear escena para mostrar los puntajes de los mejores jugadores
 		[_] crear escena para quien logra un puntaje muy bueno
+	[_] crear paquete .deb para distribuciones como Debian y Ubuntu.
