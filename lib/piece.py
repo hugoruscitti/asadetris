@@ -106,7 +106,8 @@ class Piece(pygame.sprite.Sprite):
         else:
             if dy > 0:
                 print "Ha llegado al suelo."
-                self.board.put_one_piece_here(self.position_row, self.position_col, self.matrix)
+                self.board.put_one_piece_here(self.position_row, self.position_col, 
+                        self.image, self.matrix)
                 self.board.go_to_next_piece()
 
     def can_move(self, dx, dy):
@@ -117,7 +118,7 @@ class Piece(pygame.sprite.Sprite):
         return self.board.can_put_this_piece_here(row, col, self.matrix)
 
     def update_position_rect(self):
-        x = (self.position_col -1) * 20
+        x = (self.position_col - 1) * 20
         y = (self.position_row - 1) * 20
         w = 80
         h = 80
