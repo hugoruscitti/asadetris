@@ -11,7 +11,7 @@ PIECE_I, PIECE_J, PIECE_L, PIECE_O, PIECE_S, PIECE_T, PIECE_Z = range(7)
 class Piece(pygame.sprite.Sprite):
     """Representa una pieza del tetris"""
 
-    def __init__(self, board, letter = PIECE_J):
+    def __init__(self, board, letter = PIECE_I):
         pygame.sprite.Sprite.__init__(self)
         self.board = board
         self.letter = letter
