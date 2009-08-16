@@ -87,7 +87,7 @@ a la planificación.</p>
 		[X] crear función para cargar e imprimir fuentes
 		[X] mostrar el mensaje "pulse una tecla para salir" en la pantalla principal.
 	[X] proponer un estilo de codificación
-[_] 88% Etapa 2
+[X] 100% Etapa 2
 	: Se desarrollan los movimientos básicos de las piezas, el usuario
 	: tiene que poder mover una pieza por la pantalla usando los
 	: direccionales del teclado y rotar las mismas con las teclas 'x' y
@@ -102,9 +102,9 @@ a la planificación.</p>
 	:
 	: Hay solo un tipo de pieza (la "L").
 	:
-	[_] Extender el sistema de fuentes
+	[X] Extender el sistema de fuentes
 		[X] crear un directorio para recursos de fuentes tipograficas
-		[_] que la función de imprimir cadenas soporte saltos de linea.
+		[X] que la función de imprimir cadenas soporte saltos de linea.
 	[X] crear escena de juego
 	[X] crear una ficha
 	[X] permitir el movimiento de la ficha
@@ -114,10 +114,10 @@ a la planificación.</p>
 	[X] implementar las rotaciones hacia izquiera o derecha
 	[X] restringir las rotaciones en los bordes
 	[X] mejorar el sistema de escenas para permitir cambios de una a otra
-	[_] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
-		[_] Imprimir un mensaje que indique esto en la ventana.
+	[X] hacer que el usuario pueda ir a otra escena (la de la etapa anterior) pulsando la tecla ESC.
+		[X] Imprimir un mensaje que indique esto en la ventana.
 		[X] Asignar el cambio a la tecla ESCAPE.
-[_] % Etapa 3
+[_] 85% Etapa 3
 	: En esta etapa ya se puede comenzar a apilar fichas. El usuario tiene
 	: que poder hacer bajar una pieza, que permanezca en el suelo y que
 	: llegue otra nueva para poder mover.
@@ -130,11 +130,17 @@ a la planificación.</p>
 	:
 	: No se pueden hacer lineas en esta versión, solamente apilar.
 	:
-	[_] Detener piezas cuando llegan abajo
-	[_] Crear nuevas piezas cuando deja una en el suelo
-	[_] implementar colisiones entre las piezas
-	[_] crear las piezas que faltan y mostrarlas aleatoriamente
-	[_] permitir que el usuario pueda bajar una pieza directe (y no progresivamente)
+	[X] Detener piezas cuando llegan abajo
+	[X] Crear nuevas piezas cuando deja una en el suelo
+	[X] Implementar colisiones entre las piezas
+	[X] Crear las piezas que faltan.
+	[_] Mostrar las piezas aleatoriamente.
+	[X] Permitir que el usuario pueda bajar una pieza directamente (y no progresivamente)
+		: se agrega la tecla SPACE al control del juego.
+	[X] Mostrar las piezas reposando si tocan el suelo
+		: primero mostrar rectangulos de cualquier color en donde
+		: existe una colisión. Luego se puede pintar la pieza tal y
+		: como es.
 [_] % Etapa 4
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[_] implementar puntajes
