@@ -27,6 +27,7 @@ Sobre la implementación:
 
    diseno_etapa_1
    diseno_etapa_2
+   diseno_etapa_3
    modules
 
 Indices
