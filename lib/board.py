@@ -16,9 +16,9 @@ class Board:
     def update(self):
         pass
 
-    def draw_block(self, row, col):
-        color = (200, 200, 0)
-        self.visual_matrix.fill(color, (col * 20, row * 20, 20, 20))
+    #def draw_block(self, row, col):
+    #    color = (200, 200, 0)
+    #    self.visual_matrix.fill(color, (col * 20, row * 20, 20, 20))
 
     def draw(self, screen):
         screen.blit(self.visual_matrix, (LEFT_CORNER, TOP_CORNER))
@@ -61,9 +61,10 @@ class Board:
 
         return True
 
-    def put_one_piece_here(self, row, col, mask):
+    def put_one_piece_here(self, row, col, image, mask):
         """Suelta una pieza en determinada parte del escenario."""
 
+        # define como colisionables los bloques que ocupará la pieza.
         for delta_row in range(0, 4):
             for delta_column in range(0, 4):
 
@@ -72,7 +73,10 @@ class Board:
                     dst_row = row - 1 + delta_row
 
                     self.matrix[dst_row][dst_col] = mask[delta_row][delta_column]
-                    self.draw_block(dst_row, dst_col)
+                    #self.draw_block(dst_row, dst_col)
+
+        # dibuja la pieza en donde cae.
+        self.visual_matrix.blit(image, ((col - 1)  * 20, (row -1) * 20))
 
         print "Asi queda la matriz luego de colocar la pieza."
         import pprint
