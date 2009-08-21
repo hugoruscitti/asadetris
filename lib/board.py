@@ -84,5 +84,19 @@ class Board:
         import pprint
         pprint.pprint(self.matrix)
 
+        self.check_lines()
+
     def go_to_next_piece(self):
         self.gamescene.go_to_next_scene()
+
+    def check_lines(self):
+        for row in range(len(self.matrix)):
+            width = len(self.matrix[row])
+            cwidth = 0
+
+            for col in range(width):
+                if self.matrix[row][col] == 1:
+                    cwidth += 1
+
+            if cwidth == width:
+                print "LINE at ROW %d" % (row)
