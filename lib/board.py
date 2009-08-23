@@ -88,6 +88,12 @@ class Board:
 
     def go_to_next_piece(self):
         self.gamescene.go_to_next_piece()
+    
+    def draw_line_block(self, row):
+        rect = (0, row * 20, 10 * 20, 20)
+        color = (250, 250, 250)
+        self.visual_matrix.fill(color, rect)
+        pass
 
     def check_lines(self):
         for row in range(len(self.matrix)):
@@ -100,3 +106,4 @@ class Board:
 
             if cwidth == width:
                 print "LINE at ROW %d" % (row)
+                self.draw_line_block(row)
