@@ -86,11 +86,10 @@
 		: primero mostrar rectangulos de cualquier color en donde
 		: existe una colisión. Luego se puede pintar la pieza tal y
 		: como es.
-[_] 20% Etapa 4
+[_] 50% Etapa 4
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
-	[_] permitir que el usuario pueda hacer lineas
-	[_] hacer que las piezas bajen a una determinada velocidad.
-	[X] aumentar la velocidad de caída de las piezas conforme avanza
+	[X] permitir que el usuario pueda hacer lineas
+	[X] hacer que las piezas bajen a una determinada velocidad.
 	[_] implementar un contador del lineas
 	[_] imprimir un mensaje de GameOver cuando llega a la parte superior.
 [_] % Etapa 5
