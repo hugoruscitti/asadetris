@@ -107,6 +107,9 @@ class Piece(pygame.sprite.Sprite):
             self.move(0, 1)
 
     def move(self, dx, dy):
+        if dy > 0:
+            self.timer = 0
+
         if self.can_move(dx, dy):
             self.position_col += dx
             self.position_row += dy
