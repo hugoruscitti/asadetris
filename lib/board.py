@@ -87,7 +87,7 @@ class Board:
         self.check_lines()
 
     def go_to_next_piece(self):
-        self.gamescene.go_to_next_scene()
+        self.gamescene.go_to_next_piece()
 
     def check_lines(self):
         for row in range(len(self.matrix)):

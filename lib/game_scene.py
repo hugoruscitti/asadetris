@@ -16,7 +16,7 @@ class GameScene(scene.Scene):
         self.board = board.Board(self)
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = pygame.sprite.GroupSingle()
-        self.pieces.add(piece.Piece(self.board))
+        self.pieces.add(piece.Piece(self.board, 0))
         self.create_return_message()
 
     def create_return_message(self):
@@ -53,5 +53,5 @@ class GameScene(scene.Scene):
         scene = presents_scene.PresentsScene(self.director)
         self.director.change_scene(scene)
 
-    def go_to_next_scene(self):
-        self.pieces.add(piece.Piece(self.board))
+    def go_to_next_piece(self):
+        self.pieces.add(piece.Piece(self.board, 0))

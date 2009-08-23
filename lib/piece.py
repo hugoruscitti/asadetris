@@ -12,7 +12,7 @@ import random
 class Piece(pygame.sprite.Sprite):
     """Representa una pieza del tetris"""
 
-    def __init__(self, board):
+    def __init__(self, board, speed):
         pygame.sprite.Sprite.__init__(self)
         self.board = board
         self.letter = random.randrange(7)
@@ -23,6 +23,8 @@ class Piece(pygame.sprite.Sprite):
         self.position_row = 1
         self.position_col = 5
         self.update_position_rect()
+        self.speed = speed
+        self.timer = 0
 
     def load_matrix(self):
         """Carga todos los mapas de colision para la pieza.
@@ -98,7 +100,11 @@ class Piece(pygame.sprite.Sprite):
             print line
 
     def update(self):
-        pass
+        self.timer += 1
+
+        if self.timer > 40 - self.speed * 5:
+            self.timer = 0
+            self.move(0, 1)
 
     def move(self, dx, dy):
         if self.can_move(dx, dy):
