@@ -95,6 +95,27 @@ class Board:
         self.visual_matrix.fill(color, rect)
         pass
 
+    def chop_line(self, row):
+        # self._chop_line_matrix(row)
+        # self._chop_line_block(row)
+        pass
+
+    def _chop_line_block(self, row):
+        self.visual_matrix = pygame.transform.chop(self.visual_matrix, pygame.Rect(0, row * 20, 10 * 20, 20))
+
+    def _chop_line_matrix(self, row):
+        rows = range(0, row)
+        rows.reverse()
+        
+        for r in rows:
+            self.matrix[r + 1] = self.matrix[r]
+        
+        self.matrix[0] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        
+        print "Asi queda la matriz luego de remover la linea."
+        import pprint
+        pprint.pprint(self.matrix)
+
     def check_lines(self):
         for row in range(len(self.matrix)):
             width = len(self.matrix[row])
@@ -106,4 +127,5 @@ class Board:
 
             if cwidth == width:
                 print "LINE at ROW %d" % (row)
-                self.draw_line_block(row)
+                # self.draw_line_block(row)
+                self.chop_line(row)
