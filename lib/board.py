@@ -96,12 +96,12 @@ class Board:
         pass
 
     def chop_line(self, row):
-        # self._chop_line_matrix(row)
-        # self._chop_line_block(row)
+        self._chop_line_matrix(row)
+        self._chop_line_block(row)
         pass
 
     def _chop_line_block(self, row):
-        self.visual_matrix = pygame.transform.chop(self.visual_matrix, pygame.Rect(0, row * 20, 10 * 20, 20))
+        self.visual_matrix = pygame.transform.chop(self.visual_matrix, pygame.Rect(0, row * 20, 20, 20))
 
     def _chop_line_matrix(self, row):
         rows = range(0, row)
@@ -115,6 +115,7 @@ class Board:
         print "Asi queda la matriz luego de remover la linea."
         import pprint
         pprint.pprint(self.matrix)
+
 
     def check_lines(self):
         for row in range(len(self.matrix)):
