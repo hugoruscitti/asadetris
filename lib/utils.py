@@ -77,4 +77,4 @@ def render_text(text, font, color=(0,0,0), background=None):
         image.blit(line, (0, dst_y))
         dst_y += interline + line.get_height()
 
-    return image, (width, height)
+    return image, pygame.Rect(0, 0, width, height)

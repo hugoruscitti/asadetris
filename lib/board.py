@@ -139,3 +139,4 @@ class Board:
                 print "LINE at ROW %d" % (row)
                 # self.draw_line_block(row)
                 self.chop_line(row)
+                self.gamescene.on_line_complete()
