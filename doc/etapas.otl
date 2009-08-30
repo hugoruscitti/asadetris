@@ -94,12 +94,14 @@
 	[_] imprimir un mensaje de GameOver cuando llega a la parte superior.
 [_] % Etapa 5
 	: Se agregan mejoras como las animaciones
+	[_] mostrar la siguiente pieza que va a caer.
 	[_] aumentar la velocidad de caída cuando completa mas de 10 lineas.
 	[_] crear presentacion del juego
 	[_] mejorar la escena de creditos
+	[_] cambiar el tema visual de las piezas
 	[_] crear efectos visuales en la transición entre escenas
 	[_] Colocar sonidos
-	[_] crear animación a la elimianción de lineas
+	[_] crear animación a la eliminación de lineas
 	[_] aplicar animaciones a la rotación de las piezas
 	[_] soporte para jugar con joystick.
 	[_] probar en otros sistemas operativos como windows.
