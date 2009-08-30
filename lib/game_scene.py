@@ -4,6 +4,7 @@ import scene
 import utils
 import board
 import piece
+import display
 
 
 class GameScene(scene.Scene):
@@ -18,6 +19,7 @@ class GameScene(scene.Scene):
         self.pieces = pygame.sprite.GroupSingle()
         self.pieces.add(piece.Piece(self.board, 0))
         self.create_return_message()
+        self.display = display.Display()
 
     def create_return_message(self):
         font = utils.load_font("FreeSans.ttf", 14)
@@ -33,6 +35,7 @@ class GameScene(scene.Scene):
         self.pieces.draw(screen)
         self.board.draw(screen)
         screen.blit(self.return_message, (8, 460))
+        self.display.draw(screen)
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -55,3 +58,6 @@ class GameScene(scene.Scene):
 
     def go_to_next_piece(self):
         self.pieces.add(piece.Piece(self.board, 0))
+
+    def on_line_complete(self):
+        self.display.on_line_complete()

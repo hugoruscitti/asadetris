@@ -6,6 +6,7 @@ import game_scene
 import credits_scene
 
 class Menu:
+
     def __init__(self, opts, font, color, selected_font, selected_color, margin=0):
         self.opts = opts
         self.normal_font = font
@@ -27,7 +28,7 @@ class Menu:
             self.imgs_normal.append(img_normal)
             self.imgs_selected.append(img_selected)
             
-            line_step = max(max(img_normal_size[1], img_selected_size[1]) + self.margin, line_step)
+            line_step = max(max(img_normal_size[3], img_selected_size[3]) + self.margin, line_step)
         
         self.line_step = line_step
     
@@ -43,7 +44,7 @@ class Menu:
             x = center_x - img.get_width() / 2
             y = start_y + self.line_step * i - img.get_height() / 2
             
-            screen.blit( img, (x,y) )
+            screen.blit(img, (x,y))
     
     def prev(self):
         self.selected = (self.selected - 1) % len(self.opts)
