@@ -46,6 +46,7 @@ class Board:
 
         Este método evalua las colisiones de una pieza ante un posible
         movimiento."""
+        
 
         for delta_row in range(0, 4):
             for delta_column in range(0, 4):
@@ -79,7 +80,7 @@ class Board:
 
     def put_one_piece_here(self, row, col, image, mask):
         """Suelta una pieza en determinada parte del escenario."""
-
+        
         self._update_matrix_putting_a_new_piece(row, col, mask)
         # dibuja la pieza en donde cae.
         self.visual_matrix.blit(image, ((col - 1)  * 20, (row -1) * 20))
@@ -89,6 +90,12 @@ class Board:
         pprint.pprint(self.matrix)
 
         self.check_lines()
+        
+        if 1 == row:
+            print 'Game Over?'
+            self.gamescene.pause()
+            self.gamescene.show_message('Game Over?')
+            return False
 
     def go_to_next_piece(self):
         self.gamescene.go_to_next_piece()
