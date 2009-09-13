@@ -86,15 +86,15 @@
 		: primero mostrar rectangulos de cualquier color en donde
 		: existe una colisión. Luego se puede pintar la pieza tal y
 		: como es.
-[_] 100% Etapa 4
+[X] 100% Etapa 4
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[X] permitir que el usuario pueda hacer lineas
 	[X] hacer que las piezas bajen a una determinada velocidad.
 	[X] implementar un contador del lineas
 	[X] imprimir un mensaje de GameOver cuando llega a la parte superior.
-[_] % Etapa 5
+[_] 8% Etapa 5
 	: Se agregan mejoras como las animaciones
-	[_] mostrar la siguiente pieza que va a caer.
+	[X] mostrar la siguiente pieza que va a caer.
 	[_] aumentar la velocidad de caída cuando completa mas de 10 lineas.
 	[_] crear presentacion del juego
 	[_] mejorar la escena de creditos
@@ -109,7 +109,7 @@
 [_] % Etapa 6
 	[_] permitir que el usuario use el mouse para seleccionar en el menu.
 	[_] crear la escena de ayuda explicando los controles.
-	[_] crear la esacena de configuración del juego
+	[_] crear la escena de configuración del juego
 		[_] opción para des/habilitar sonidos
 		[_] opción para des/habilitar musica
 		[_] alternar entre ventana y pantalla completa.
