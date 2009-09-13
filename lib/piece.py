@@ -9,22 +9,18 @@ import random
 #"Constantes"
 #PIECE_I, PIECE_J, PIECE_L, PIECE_O, PIECE_S, PIECE_T, PIECE_Z = range(7)
 
-class Piece(pygame.sprite.Sprite):
-    """Representa una pieza del tetris"""
-
-    def __init__(self, board, speed):
+class PieceStatic(pygame.sprite.Sprite):
+    def __init__(self, letter=None):
         pygame.sprite.Sprite.__init__(self)
-        self.board = board
-        self.letter = random.randrange(7)
+        
+        if None == letter:
+            self.letter = random.randrange(7)
+        else:
+            self.letter = letter
         self.load_images("pieces/p" + str(self.letter) + ".png")
         self.load_matrix()
         self.set_frame(0)
-
-        self.position_row = 1
-        self.position_col = 5
-        self.update_position_rect()
-        self.speed = speed
-        self.timer = 0
+        self.set_position_rect(0, 0)
 
     def load_matrix(self):
         """Carga todos los mapas de colision para la pieza.
@@ -80,7 +76,7 @@ class Piece(pygame.sprite.Sprite):
                     new_line.append(0)
 
             matrix.append(new_line)
-                
+
         return matrix
 
     def load_images(self, path):
@@ -98,6 +94,26 @@ class Piece(pygame.sprite.Sprite):
         "Imprime una matriz a modo de depuración."
         for line in matrix:
             print line
+
+    def set_position_rect(self, x, y):
+        w = 80
+        h = 80
+
+        self.rect = pygame.Rect(x, y, w, h)
+
+class Piece(PieceStatic):
+    """Representa una pieza del tetris"""
+
+    def __init__(self, board, speed, letter=None):
+        PieceStatic.__init__(self, letter)
+
+        self.board = board
+
+        self.position_row = 1
+        self.position_col = 5
+        self.update_position_rect()
+        self.speed = speed
+        self.timer = 0
 
     def update(self):
         self.timer += 1
@@ -131,10 +147,8 @@ class Piece(pygame.sprite.Sprite):
     def update_position_rect(self):
         x = (self.position_col - 1) * 20
         y = (self.position_row - 1) * 20
-        w = 80
-        h = 80
-
-        self.rect = pygame.Rect(LEFT_CORNER + x, TOP_CORNER + y, w, h)
+        
+        self.set_position_rect(LEFT_CORNER + x, TOP_CORNER + y)
 
     def rotate_to_left(self):
         self.rotate(-1)

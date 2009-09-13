@@ -18,11 +18,11 @@ class GameScene(scene.Scene):
         self.current_message = None
         self.current_message_rect = None
         self.board = board.Board(self)
+        self.display = display.Display()
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = pygame.sprite.GroupSingle()
         self.go_to_next_piece()
         self.create_return_message()
-        self.display = display.Display()
 
     def create_return_message(self):
         font = utils.load_font("FreeSans.ttf", 14)
@@ -35,10 +35,10 @@ class GameScene(scene.Scene):
 
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
+        self.display.draw(screen)
         self.pieces.draw(screen)
         self.board.draw(screen)
         screen.blit(self.return_message, (8, 460))
-        self.display.draw(screen)
         
         if self.current_message:
             x = ( 640 - self.current_message_rect.w ) / 2
@@ -68,7 +68,9 @@ class GameScene(scene.Scene):
 
     def go_to_next_piece(self):
         if self.running:
-            self.pieces.add(piece.Piece(self.board, 0))
+            nextp = piece.Piece(self.board, 0, self.display.get_next_piece_letter())
+            self.pieces.add(nextp)
+            self.display.set_next_piece()
 
     def on_line_complete(self):
         self.display.on_line_complete()
