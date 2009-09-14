@@ -15,7 +15,7 @@ class CreditScene(scene.Scene):
         self.font = utils.load_font("FreeSans.ttf",25)
         
         self.authors = ["Hugo Ruscitti", "Juanxo", "Dokan", "lacabra25", \
-                        "Juan Carlos", "thepoi", "joksnet"]
+                        "Juan Carlos", "thepoi", "joksnet", "Walter Velazquez"]
                         
         self.rendered_authors = self.render_authors()
 
