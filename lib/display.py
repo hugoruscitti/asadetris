@@ -10,6 +10,7 @@ class Display:
         self.rect = pygame.Rect((480, 20, 140, 300))
         
         self.lines = 0
+        self.level = 0
         self.update_image()
         
         self.pieces_next = pygame.sprite.GroupSingle()
@@ -25,6 +26,10 @@ class Display:
     def on_line_complete(self):
         self.lines += 1
         self.update_image()
+
+        # el nivel avanza cada 10 lineas.
+        self.level = self.lines / 10
+        print "Con %d lineas le corresponde el nivel %d" %(self.lines, self.level)
 
     def update_image(self):
         font = utils.load_font("FreeSans.ttf", 30)

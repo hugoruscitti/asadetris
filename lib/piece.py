@@ -10,6 +10,7 @@ import random
 #PIECE_I, PIECE_J, PIECE_L, PIECE_O, PIECE_S, PIECE_T, PIECE_Z = range(7)
 
 class PieceStatic(pygame.sprite.Sprite):
+
     def __init__(self, letter=None):
         pygame.sprite.Sprite.__init__(self)
         
@@ -17,6 +18,7 @@ class PieceStatic(pygame.sprite.Sprite):
             self.letter = random.randrange(7)
         else:
             self.letter = letter
+
         self.load_images("pieces/p" + str(self.letter) + ".png")
         self.load_matrix()
         self.set_frame(0)

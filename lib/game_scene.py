@@ -21,6 +21,7 @@ class GameScene(scene.Scene):
         self.display = display.Display()
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = pygame.sprite.GroupSingle()
+        self.game_speed = 0
         self.go_to_next_piece()
         self.create_return_message()
 
@@ -68,12 +69,15 @@ class GameScene(scene.Scene):
 
     def go_to_next_piece(self):
         if self.running:
-            nextp = piece.Piece(self.board, 0, self.display.get_next_piece_letter())
+            nextp = piece.Piece(self.board, self.game_speed, 
+                    self.display.get_next_piece_letter())
             self.pieces.add(nextp)
             self.display.set_next_piece()
 
     def on_line_complete(self):
         self.display.on_line_complete()
+        self.game_speed = self.display.level * 5
+
 
     def pause(self):
         self.running = False

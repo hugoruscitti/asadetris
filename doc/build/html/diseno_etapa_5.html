@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Integrantes &mdash; asadetris v0.1 documentation</title>
+    <title>Diseño de la etapa 5 &mdash; asadetris v0.1 documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -21,8 +21,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/translations.js"></script>
     <link rel="top" title="asadetris v0.1 documentation" href="index.html" />
-    <link rel="next" title="Tareas y etapas" href="tareas_y_etapas.html" />
-    <link rel="prev" title="Asadetris" href="index.html" /> 
+    <link rel="next" title="Módulos" href="modules.html" />
+    <link rel="prev" title="Diseño de la etapa 4" href="diseno_etapa_4.html" /> 
   </head>
   <body>
     <div class="related">
@@ -32,10 +32,10 @@
           <a href="genindex.html" title="Índice General"
              accesskey="I">índice</a></li>
         <li class="right" >
-          <a href="tareas_y_etapas.html" title="Tareas y etapas"
+          <a href="modules.html" title="Módulos"
              accesskey="N">siguiente</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Asadetris"
+          <a href="diseno_etapa_4.html" title="Diseño de la etapa 4"
              accesskey="P">anterior</a> |</li>
         <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
       </ul>
@@ -46,20 +46,24 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="integrantes">
-<h1>Integrantes<a class="headerlink" href="#integrantes" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>El desarrollo de este juego es un proyecto colaborativo, esta
-es la lista de personas que participan en él:</p>
-<ul class="simple">
-<li>Hugo Ruscitti</li>
-<li>Juanxo</li>
-<li>Dokan</li>
-<li>lacabra25</li>
-<li>Juan Carlos</li>
-<li>thepoi</li>
-<li>josknet</li>
-<li>Walter Velazquez</li>
-</ul>
+  <div class="section" id="dise-o-de-la-etapa-5">
+<h1>Diseño de la etapa 5<a class="headerlink" href="#dise-o-de-la-etapa-5" title="Enlazar permanentemente con este título">¶</a></h1>
+<div class="section" id="velocidad-del-juego">
+<h2>Velocidad del juego<a class="headerlink" href="#velocidad-del-juego" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Cuando el usuario realiza 10 lineas buscamos que el juego aumente
+de velocidad. Esto se logra mediante la interacción de los
+objectos <cite>Display</cite>, <cite>Game</cite> y <cite>Piece</cite>.</p>
+<p>Básicamente quien coordina la velocidad del juego es la clase
+<cite>Game</cite>. Mientras el usuario está jugando el objeto <cite>Game</cite> almacena
+en su atributo <cite>speed</cite> la velocidad que le tiene que asignar
+a cada pieza que genera. Este atributo de velocidad depende de
+lo que le diga la clase <cite>Display</cite>, que conoce cuantas lineas
+del juego a realiza el usuario y en qué nivel se encuenta.</p>
+<p>El nivel, es simplemente la parte decimal de la cantidad de lineas:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">nivel</span> <span class="o">=</span> <span class="n">lineas</span> <span class="o">/</span> <span class="mf">10</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -68,15 +72,23 @@ es la lista de personas que participan en él:</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+            <h3><a href="index.html">Contenidos</a></h3>
+            <ul>
+<li><a class="reference external" href="">Diseño de la etapa 5</a><ul>
+<li><a class="reference external" href="#velocidad-del-juego">Velocidad del juego</a></li>
+</ul>
+</li>
+</ul>
+
             <h4>Tema anterior</h4>
-            <p class="topless"><a href="index.html"
-                                  title="Capítulo anterior">Asadetris</a></p>
+            <p class="topless"><a href="diseno_etapa_4.html"
+                                  title="Capítulo anterior">Diseño de la etapa 4</a></p>
             <h4>Próximo tema</h4>
-            <p class="topless"><a href="tareas_y_etapas.html"
-                                  title="Próximo capítulo">Tareas y etapas</a></p>
+            <p class="topless"><a href="modules.html"
+                                  title="Próximo capítulo">Módulos</a></p>
             <h3>Esta página</h3>
             <ul class="this-page-menu">
-              <li><a href="_sources/integrantes.txt"
+              <li><a href="_sources/diseno_etapa_5.txt"
                      rel="nofollow">Enseñar el código</a></li>
             </ul>
           <div id="searchbox" style="display: none">
@@ -103,10 +115,10 @@ es la lista de personas que participan en él:</p>
           <a href="genindex.html" title="Índice General"
              >índice</a></li>
         <li class="right" >
-          <a href="tareas_y_etapas.html" title="Tareas y etapas"
+          <a href="modules.html" title="Módulos"
              >siguiente</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Asadetris"
+          <a href="diseno_etapa_4.html" title="Diseño de la etapa 4"
              >anterior</a> |</li>
         <li><a href="index.html">asadetris v0.1 documentation</a> &raquo;</li> 
       </ul>
