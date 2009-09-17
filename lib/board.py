@@ -85,9 +85,10 @@ class Board:
         # dibuja la pieza en donde cae.
         self.visual_matrix.blit(image, ((col - 1)  * 20, (row -1) * 20))
 
-        print "Asi queda la matriz luego de colocar la pieza."
-        import pprint
-        pprint.pprint(self.matrix)
+        # TODO: eliminar las siguiente sentencias.
+        #print "Asi queda la matriz luego de colocar la pieza."
+        #import pprint
+        #pprint.pprint(self.matrix)
 
         self.check_lines()
         
