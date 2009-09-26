@@ -76,7 +76,7 @@ class GameScene(scene.Scene):
 
     def on_line_complete(self):
         self.display.on_line_complete()
-        self.game_speed = self.display.level * 5
+        self.game_speed = self.display.level * 2
 
 
     def pause(self):

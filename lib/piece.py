@@ -134,7 +134,7 @@ class Piece(PieceStatic):
             self.update_position_rect()
         else:
             if dy > 0:
-                print "Ha llegado al suelo."
+                # Ha llegado al suelo
                 self.board.put_one_piece_here(self.position_row, 
                         self.position_col, self.image, self.matrix)
                 self.board.go_to_next_piece()
