@@ -4,6 +4,27 @@
 : Note que este archivo se modifica con frecuencia, en este momento
 : no está completo.
 
+[_] 16% Etapa 5 (actual)
+	: Se agregan mejoras como las animaciones
+	[X] mostrar la siguiente pieza que va a caer.
+	[X] aumentar la velocidad de caída cuando completa mas de 10 lineas.
+	[_] crear presentacion del juego
+	[_] mejorar la escena de creditos
+	[_] cambiar el tema visual de las piezas
+	[_] crear efectos visuales en la transición entre escenas
+	[_] Colocar sonidos
+	[_] crear animación a la eliminación de lineas
+	[_] aplicar animaciones a la rotación de las piezas
+	[_] soporte para jugar con joystick.
+	[_] probar en otros sistemas operativos como windows.
+	[_] genera version ejecutable en formato .exe
+
+
+
+Etapas anteriores
+=================
+
+
 [X] 100% Etapa 1
 	: El propósito de esta etapa es tener una ventana principal con
 	: un fondo de pantalla y una leyenda de texto. El usuario tiene
@@ -92,20 +113,13 @@
 	[X] hacer que las piezas bajen a una determinada velocidad.
 	[X] implementar un contador del lineas
 	[X] imprimir un mensaje de GameOver cuando llega a la parte superior.
-[_] 16% Etapa 5
-	: Se agregan mejoras como las animaciones
-	[X] mostrar la siguiente pieza que va a caer.
-	[X] aumentar la velocidad de caída cuando completa mas de 10 lineas.
-	[_] crear presentacion del juego
-	[_] mejorar la escena de creditos
-	[_] cambiar el tema visual de las piezas
-	[_] crear efectos visuales en la transición entre escenas
-	[_] Colocar sonidos
-	[_] crear animación a la eliminación de lineas
-	[_] aplicar animaciones a la rotación de las piezas
-	[_] soporte para jugar con joystick.
-	[_] probar en otros sistemas operativos como windows.
-	[_] genera version ejecutable en formato .exe
+
+
+Siguientes etapas
+=================
+
+
+
 [_] % Etapa 6
 	[_] permitir que el usuario use el mouse para seleccionar en el menu.
 	[_] crear la escena de ayuda explicando los controles.
