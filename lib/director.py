@@ -15,6 +15,7 @@ class Director:
         self.screen = pygame.display.set_mode((640, 480))
         pygame.display.set_caption("Asadetris - 0.1")
         self.scene = None
+        self.fullscreen = False
         self.quit_flag = False
 
         pygame.key.set_repeat(100, 100)
@@ -29,7 +30,11 @@ class Director:
                 if event.type == pygame.QUIT:
                     self.quit()
                 else:
-                    self.scene.on_event(event)
+                    if event.type == pygame.KEYDOWN:
+                        if event.key in [pygame.K_F3, pygame.K_f]:
+                            self.alternate_fullscreen()
+
+                        self.scene.on_event(event)
 
             # actualiza la escena
             self.scene.on_update()
@@ -40,6 +45,12 @@ class Director:
             self.scene.on_draw(self.screen)
             pygame.display.flip()
 
+    def alternate_fullscreen(self):
+        self.set_fullscreen(not self.fullscreen)
+
+    def set_fullscreen(self, mode):
+        #TODO: utilizar el parametro mode
+        pygame.display.toggle_fullscreen()
 
     def change_scene(self, scene):
         "Altera la escena actual."
