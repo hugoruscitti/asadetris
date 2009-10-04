@@ -6,13 +6,22 @@ from config import LEFT_CORNER, TOP_CORNER
 import random
 
 
-#"Constantes"
-#PIECE_I, PIECE_J, PIECE_L, PIECE_O, PIECE_S, PIECE_T, PIECE_Z = range(7)
+class Group(pygame.sprite.GroupSingle):
+
+    def __init__(self):
+        pygame.sprite.GroupSingle.__init__(self)
+
+    def draw(self, screen):
+        for s in self.sprites():
+            s.draw(screen)
+
+
 
 class PieceStatic(pygame.sprite.Sprite):
 
     def __init__(self, letter=None):
         pygame.sprite.Sprite.__init__(self)
+        self.current_angle = 0
         
         if None == letter:
             self.letter = random.randrange(7)
@@ -24,6 +33,22 @@ class PieceStatic(pygame.sprite.Sprite):
         self.set_frame(0)
         self.set_position_rect(0, 0)
 
+    def draw(self, screen):
+        rect = pygame.Rect(self.rect)
+        image_rect = self.image.get_rect()
+
+        if self.current_angle == 45:
+            rect.y -= 40
+            rect.x -= 10
+        elif self.current_angle == -45:
+            rect.y -= 10
+            rect.x -= 40
+
+        #pygame.draw.rect(screen, (0,0,0), rect, 1)
+        #pygame.draw.rect(screen, (255,0,0), image_rect, 1)
+        screen.blit(self.image, rect)
+
+
     def load_matrix(self):
         """Carga todos los mapas de colision para la pieza.
 
@@ -32,6 +57,7 @@ class PieceStatic(pygame.sprite.Sprite):
         de este archivo se convierte en una lista de matrices
         dentro de esta función.
         """
+
         dirname = os.path.dirname(os.path.abspath(__file__))
         filename = "p" + str(self.letter) + ".txt"
         handler = file(os.path.join(dirname, "../mask/", filename), "rt")
@@ -88,6 +114,7 @@ class PieceStatic(pygame.sprite.Sprite):
         self.frames = [image.subsurface(x * w, 0, w, h) for x in range(0, 4)]
 
     def set_frame(self, index):
+        self.original_image = self.frames[index]
         self.image = self.frames[index]
         self.frame_index = index
         self.matrix = self.matrix_list[index]
@@ -103,6 +130,10 @@ class PieceStatic(pygame.sprite.Sprite):
 
         self.rect = pygame.Rect(x, y, w, h)
 
+
+
+
+
 class Piece(PieceStatic):
     """Representa una pieza del tetris"""
 
@@ -116,6 +147,22 @@ class Piece(PieceStatic):
         self.update_position_rect()
         self.speed = speed
         self.timer = 0
+        self.set_rotate_animation(start=0, end=0)
+
+    def set_rotate_animation(self, start, end):
+        if end > start:
+            self.rotate_animation = range(start, end, 10)
+        else:
+            self.rotate_animation = range(start, end, -10)
+
+    def update_animation(self):
+        if self.rotate_animation:
+            angle = self.rotate_animation.pop()
+            self.image = pygame.transform.rotozoom(self.original_image, angle, 1)
+            self.current_angle = angle
+        else:
+            self.image = self.original_image
+            self.current_angle = 0
 
     def update(self):
         self.timer += 1
@@ -123,6 +170,8 @@ class Piece(PieceStatic):
         if self.timer > 40 - self.speed * 5:
             self.timer = 0
             self.move(0, 1)
+
+        self.update_animation()
 
     def move(self, dx, dy):
         if dy > 0:
@@ -135,8 +184,7 @@ class Piece(PieceStatic):
         else:
             if dy > 0:
                 # Ha llegado al suelo
-                self.board.put_one_piece_here(self.position_row, 
-                        self.position_col, self.image, self.matrix)
+                self.board.put_one_piece_here(self)
                 self.board.go_to_next_piece()
 
     def can_move(self, dx, dy):
@@ -153,9 +201,15 @@ class Piece(PieceStatic):
         self.set_position_rect(LEFT_CORNER + x, TOP_CORNER + y)
 
     def rotate_to_left(self):
+        #self.rotate_animation = [-60, -30]
+        self.rotate_animation = [-45]
+        self.rotate_animation.reverse()
         self.rotate(-1)
 
     def rotate_to_right(self):
+        #self.rotate_animation = [60, 30]
+        self.rotate_animation = [45]
+        self.rotate_animation.reverse()
         self.rotate(1)
 
     def rotate(self, delta):

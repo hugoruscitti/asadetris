@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pygame
 import utils
+import sys
 
 class Director:
     """Representa el objeto principal del juego.
@@ -33,6 +34,8 @@ class Director:
                     if event.type == pygame.KEYDOWN:
                         if event.key in [pygame.K_F3, pygame.K_f]:
                             self.alternate_fullscreen()
+                        elif event.key == pygame.K_q:
+                            sys.exit(0)
 
                         self.scene.on_event(event)
 
