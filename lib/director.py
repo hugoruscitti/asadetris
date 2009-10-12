@@ -3,6 +3,13 @@ import pygame
 import utils
 import sys
 
+
+ALLOW_EVENTS = [
+        pygame.JOYAXISMOTION, 
+        pygame.JOYHATMOTION,
+        pygame.JOYBUTTONDOWN,
+        ]
+
 class Director:
     """Representa el objeto principal del juego.
 
@@ -20,6 +27,7 @@ class Director:
         self.quit_flag = False
 
         pygame.key.set_repeat(100, 100)
+        self.init_joysticks()
 
     def loop(self):
         "Pone en funcionamiento el juego."
@@ -39,6 +47,9 @@ class Director:
 
                         self.scene.on_event(event)
 
+                    elif event.type in ALLOW_EVENTS:
+                        self.scene.on_event(event)
+
             # actualiza la escena
             self.scene.on_update()
             pygame.time.delay(10)
@@ -47,6 +58,19 @@ class Director:
             self.screen.fill((200, 200, 200))
             self.scene.on_draw(self.screen)
             pygame.display.flip()
+
+    def init_joysticks(self):
+        self.joysticks = []
+
+        pygame.joystick.init()
+        joystick_counter = pygame.joystick.get_count()
+        print "Hay %d joysticks conectados al equipo" %(joystick_counter)
+
+        for x in range(joystick_counter):
+            joystick = pygame.joystick.Joystick(x)
+            name = joystick.get_name()
+            joystick.init()
+            self.joysticks.append(joystick)
 
     def alternate_fullscreen(self):
         self.set_fullscreen(not self.fullscreen)

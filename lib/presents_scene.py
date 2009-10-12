@@ -79,17 +79,32 @@ class PresentsScene(scene.Scene):
             self.director.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                if self.menu.selected == utils.JUGAR:
-                    scene = game_scene.GameScene(self.director)
-                    self.director.change_scene(scene)
-                elif self.menu.selected == utils.CREDITOS:
-                    scene = credits_scene.CreditScene(self.director)
-                    self.director.change_scene(scene)
-                elif self.menu.selected == utils.SALIR:
-                    self.director.quit()
+                self.select_option()
             elif event.key == pygame.K_UP:
                 self.menu.prev()
             elif event.key == pygame.K_DOWN:
                 self.menu.next()
             elif event.key == pygame.K_ESCAPE:
                 self.director.quit()
+        else:
+            if event.type == pygame.JOYHATMOTION:
+                x, y = event.value
+
+                if y < -0.5:
+                    self.menu.next()
+                elif y > 0.5:
+                    self.menu.prev()
+            elif event.type == pygame.JOYBUTTONDOWN:
+                self.select_option()
+
+    def select_option(self):
+        "Selecciona la opcion actual."
+
+        if self.menu.selected == utils.JUGAR:
+            scene = game_scene.GameScene(self.director)
+            self.director.change_scene(scene)
+        elif self.menu.selected == utils.CREDITOS:
+            scene = credits_scene.CreditScene(self.director)
+            self.director.change_scene(scene)
+        elif self.menu.selected == utils.SALIR:
+            self.director.quit()
