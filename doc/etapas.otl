@@ -4,7 +4,7 @@
 : Note que este archivo se modifica con frecuencia, en este momento
 : no está completo.
 
-[_] 30% Etapa 5 (actual)
+[_] 38% Etapa 5 (actual)
 	: Se agregan mejoras como las animaciones
 	[X] mostrar la siguiente pieza que va a caer.
 	[X] aumentar la velocidad de caída cuando completa mas de 10 lineas.
@@ -16,7 +16,7 @@
 	[_] crear animación a la eliminación de lineas
 	[X] aplicar animaciones a la rotación de las piezas
 	[X] permite aternar entre pantalla completa y ventana.
-	[_] soporte para jugar con joystick.
+	[X] soporte para jugar con joystick.
 	[_] probar en otros sistemas operativos como windows.
 	[_] genera version ejecutable en formato .exe
 

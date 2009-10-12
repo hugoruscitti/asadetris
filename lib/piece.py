@@ -237,7 +237,7 @@ class Piece(PieceStatic):
 
 
         if event.key == pygame.K_UP:
-            self.rotate_to_left()
+            self.inmediate_fall()
 
         if event.key == pygame.K_z:
             self.rotate_to_left()
@@ -249,6 +249,23 @@ class Piece(PieceStatic):
 
         if event.key == pygame.K_SPACE:
             self.inmediate_fall()
+
+    def on_joyhatmotion_event(self, event):
+        dx, dy = event.value
+
+        if dy > 0.5:
+            self.inmediate_fall()
+        else:
+            self.move(dx, -dy)
+
+
+    def on_joybutton_event(self, event):
+        button = event.button
+
+        if button in [3, 0]:
+            self.rotate_to_left()
+        elif button in [2, 1]:
+            self.rotate_to_right()
 
     def inmediate_fall(self):
         "Hace caer la ficha inmediatamente."

@@ -56,10 +56,22 @@ class GameScene(scene.Scene):
                 self._return_to_main_menu()
             else:
                 self.emit_on_key_down_event_to_pieces(event)
+        elif event.type == pygame.JOYBUTTONDOWN:
+            self.emit_joybutton_event_to_pieces(event)
+        elif event.type == pygame.JOYHATMOTION:
+            self.emit_joyhatmotion_event_to_pieces(event)
 
     def emit_on_key_down_event_to_pieces(self, event):
         for piece in self.pieces.sprites():
             piece.on_key_down_event(event)
+
+    def emit_joyhatmotion_event_to_pieces(self, event):
+        for piece in self.pieces.sprites():
+            piece.on_joyhatmotion_event(event)
+
+    def emit_joybutton_event_to_pieces(self, event):
+        for piece in self.pieces.sprites():
+            piece.on_joybutton_event(event)
 
     def _return_to_main_menu(self):
         import presents_scene
