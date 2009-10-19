@@ -112,14 +112,11 @@ Etapas anteriores
 	: Aquí se implementan la creación de lineas y la asignación de puntaje.
 	[X] permitir que el usuario pueda hacer lineas
 	[X] hacer que las piezas bajen a una determinada velocidad.
-	[X] implementar un contador del lineas
+	[X] implementar un contador de lineas
 	[X] imprimir un mensaje de GameOver cuando llega a la parte superior.
-
 
 Siguientes etapas
 =================
-
-
 
 [_] % Etapa 6
 	[_] permitir que el usuario use el mouse para seleccionar en el menu.
