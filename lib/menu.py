@@ -20,17 +20,25 @@ class Cursor:
 
     def set_position(self, index):
         self.rect.y = self.start_y + index * self.item_height
+    
+    def on_update(self):
+        pass
 
 
 class Menu:
 
-    def __init__(self, opts, font, color, selected_font, selected_color, margin=0):
+    def __init__(self, opts):
         self.opts = opts
+
+        selected_font = utils.load_font("FreeSans.ttf", 30)
+        selected_color = (255, 255, 255)
+        font = utils.load_font("FreeSans.ttf", 30)
+        color = (0, 0, 0)
+
         self.normal_font = font
         self.normal_color = color
         self.selected_font = selected_font
         self.selected_color = selected_color
-        self.margin = margin
         self.start_y = 200
         self.item_height = 50
 
@@ -42,6 +50,9 @@ class Menu:
         
         
         self._create_option_images()
+
+    def on_update(self):
+        self.cursor.on_update()
 
     def _create_option_images(self):
         "Genera todos los items del menú."
@@ -56,8 +67,7 @@ class Menu:
             self.imgs_normal.append(img_normal)
             self.imgs_selected.append(img_selected)
             
-            line_step = max(max(img_normal_size[3], img_selected_size[3]) + self.margin, 
-                    line_step)
+            line_step = max(max(img_normal_size[3], img_selected_size[3]), line_step)
         
         self.line_step = line_step
     
