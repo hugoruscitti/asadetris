@@ -4,6 +4,7 @@ import utils
 import pygame
 import game_scene
 import credits_scene
+import options_scene
 import pytweener
 import menu
 
@@ -32,10 +33,17 @@ class PresentsScene(scene.Scene):
 
     Esta escena es la primera que se ve al iniciar el juego."""
 
-    def __init__(self, director):
+    def __init__(self, director, initial_selected):
         scene.Scene.__init__(self, director)
         self.title = Title()
-        self.menu = menu.Menu(["Jugar!", "Creditos", "Salir"])
+        self.menu = menu.Menu(
+                [("Jugar", self.on_start_game),
+                 ("Opciones", self.on_setup),
+                 ("Creditos", self.on_about),
+                 ("Salir", self.on_exit),
+                 ],
+                initial_selected
+                )
 
     def on_update(self):
         self.title.on_update()
@@ -50,7 +58,7 @@ class PresentsScene(scene.Scene):
             self.director.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                self.select_option()
+                self.menu.do_select()
             elif event.key == pygame.K_UP:
                 self.menu.prev()
             elif event.key == pygame.K_DOWN:
@@ -66,16 +74,19 @@ class PresentsScene(scene.Scene):
                 elif y > 0.5:
                     self.menu.prev()
             elif event.type == pygame.JOYBUTTONDOWN:
-                self.select_option()
+                self.menu.do_select()
 
-    def select_option(self):
-        "Selecciona la opcion actual."
+    def on_start_game(self):
+        scene = game_scene.GameScene(self.director)
+        self.director.change_scene(scene)
 
-        if self.menu.selected == utils.JUGAR:
-            scene = game_scene.GameScene(self.director)
-            self.director.change_scene(scene)
-        elif self.menu.selected == utils.CREDITOS:
-            scene = credits_scene.CreditScene(self.director)
-            self.director.change_scene(scene)
-        elif self.menu.selected == utils.SALIR:
-            self.director.quit()
+    def on_about(self):
+        scene = credits_scene.CreditScene(self.director)
+        self.director.change_scene(scene)
+
+    def on_exit(self):
+        self.director.quit()
+
+    def on_setup(self):
+        scene = options_scene.OptionsScene(self.director)
+        self.director.change_scene(scene)

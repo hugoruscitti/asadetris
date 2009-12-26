@@ -11,8 +11,7 @@ class CreditScene(scene.Scene):
         scene.Scene.__init__(self, director)
 
         self.title , self.title_rect = utils.load_images("creditscene/title.png")
-        
-        self.font = utils.load_font("FreeSans.ttf",25)
+        self.font = utils.load_font("FreeSans.ttf", 25)
         
         self.authors = ["Hugo Ruscitti", "Juanxo", "Dokan", "lacabra25", \
                         "Juan Carlos", "thepoi", "joksnet", "Walter Velazquez"]
@@ -38,7 +37,7 @@ class CreditScene(scene.Scene):
             self.director.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                scene = presents_scene.PresentsScene(self.director)
+                scene = presents_scene.PresentsScene(self.director, 2)
                 self.director.change_scene(scene)
     
     def render_authors(self):

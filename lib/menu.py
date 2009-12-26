@@ -6,7 +6,7 @@ import pytweener
 
 class Cursor:
 
-    def __init__(self, start_y, item_height):
+    def __init__(self, start_y, item_height, initial_selected):
         self.image, self.rect = utils.load_images("cursor.png")
         self.rect.centerx = 320
         self.start_y = start_y
@@ -14,7 +14,7 @@ class Cursor:
         self.item_height = item_height
         self.tweener = pytweener.Tweener()
 
-        self.set_position(0)
+        self.set_position(initial_selected)
 
     def on_draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -30,9 +30,10 @@ class Cursor:
 
 
 class Menu:
+    "Representa un menu dentro del juego, por ejemplo el menu principal."
 
-    def __init__(self, opts):
-        self.opts = opts
+    def __init__(self, options, initial_selected=0):
+        self.options = options
 
         selected_font = utils.load_font("FreeSans.ttf", 30)
         selected_color = (255, 255, 255)
@@ -46,9 +47,9 @@ class Menu:
         self.start_y = 200
         self.item_height = 50
 
-        self.cursor = Cursor(self.start_y, self.item_height)
+        self.cursor = Cursor(self.start_y, self.item_height, initial_selected)
         
-        self.selected = utils.JUGAR
+        self.selected = initial_selected
         self.imgs_normal = []
         self.imgs_selected = []
         
@@ -62,7 +63,7 @@ class Menu:
         "Genera todos los items del menú."
         line_step = 0
 
-        for text in self.opts:
+        for (text, callback) in self.options:
             img_normal, img_normal_size = utils.render_text(text, self.normal_font, 
                     self.normal_color)
             img_selected, img_selected_size = utils.render_text(text, 
@@ -76,11 +77,12 @@ class Menu:
         self.line_step = line_step
     
     def on_draw(self, screen):
+        "Dibuja todos los items y el cursor."
         center_x = screen.get_width() / 2
         
         self.cursor.on_draw(screen)
 
-        for i in range(len(self.opts)):
+        for i in range(len(self.options)):
             if i == self.selected:
                 img = self.imgs_selected[i]
             else:
@@ -91,11 +93,17 @@ class Menu:
             
             screen.blit(img, (x,y))
 
-    
     def prev(self):
-        self.selected = (self.selected - 1) % len(self.opts)
+        "Regresa una opcion para arriba."
+        self.selected = (self.selected - 1) % len(self.options)
         self.cursor.set_position(self.selected)
     
     def next(self):
-        self.selected = (self.selected + 1) % len(self.opts)
+        "Avanza a la siguiente opcion."
+        self.selected = (self.selected + 1) % len(self.options)
         self.cursor.set_position(self.selected)
+
+    def do_select(self):
+        "Cuando seleccionan pulsado ENTER o similar."
+        (title, callback) = self.options[self.selected]
+        callback()
