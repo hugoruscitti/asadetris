@@ -46,7 +46,7 @@ class PresentsScene(scene.Scene):
         self.title.on_update()
 
     def on_draw(self, screen):
-        self.menu.on_draw(screen, 200)
+        self.menu.on_draw(screen)
         self.title.on_draw(screen)
         
     def on_event(self, event):
