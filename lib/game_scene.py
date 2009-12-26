@@ -76,7 +76,7 @@ class GameScene(scene.Scene):
     def _return_to_main_menu(self):
         import presents_scene
 
-        scene = presents_scene.PresentsScene(self.director)
+        scene = presents_scene.PresentsScene(self.director, 0)
         self.director.change_scene(scene)
 
     def go_to_next_piece(self):

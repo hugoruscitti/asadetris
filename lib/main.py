@@ -9,7 +9,7 @@ def run():
     "Función principal del programa."
 
     dir = director.Director()
-    scene = presents_scene.PresentsScene(dir)
+    scene = presents_scene.PresentsScene(dir, 0)
     dir.change_scene(scene)
     dir.loop()
 
