@@ -7,9 +7,7 @@ import pytweener
 class Cursor:
 
     def __init__(self, start_y, item_height):
-        self.image = pygame.Surface((200, 40))
-        self.image.fill((100, 100, 100))
-        self.rect = self.image.get_rect()
+        self.image, self.rect = utils.load_images("cursor.png")
         self.rect.centerx = 320
         self.start_y = start_y
         self.y = 0
@@ -22,7 +20,7 @@ class Cursor:
         screen.blit(self.image, self.rect)
 
     def set_position(self, index):
-        to_y = self.start_y + index * self.item_height
+        to_y = self.start_y + index * self.item_height - 2
         self.tweener.addTween(self, y=to_y, tweenTime=1)
 
     
