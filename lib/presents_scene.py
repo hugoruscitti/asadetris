@@ -4,6 +4,26 @@ import utils
 import pygame
 import game_scene
 import credits_scene
+import pytweener
+
+
+
+class Title:
+
+    def __init__(self):
+        self.image, self.rect = utils.load_images("mainmenu/title.png")
+        self.rect.right = 0
+        self.tweener = pytweener.Tweener()
+        self.x = - self.rect.width
+        self.tweener.addTween(self, x=200, tweenTime=1,
+                tweenType=pytweener.Easing.Elastic.easeOut)
+
+    def on_draw(self, screen):
+        self.rect.x = self.x
+        screen.blit(self.image, self.rect)
+
+    def on_update(self):
+        self.tweener.update(0.01)
 
 class Menu:
 
@@ -52,6 +72,7 @@ class Menu:
     def next(self):
         self.selected = (self.selected + 1) % len(self.opts)
 
+
 class PresentsScene(scene.Scene):
     """Representa la escena de introducción al juego donde se muestra el logo.
 
@@ -59,7 +80,7 @@ class PresentsScene(scene.Scene):
 
     def __init__(self, director):
         scene.Scene.__init__(self, director)
-        self.title, self.rect = utils.load_images("mainmenu/title.png")
+        self.title = Title()
         
         self.menu = Menu(
             ["Jugar!", "Creditos", "Salir"],
@@ -68,11 +89,11 @@ class PresentsScene(scene.Scene):
         )
 
     def on_update(self):
-        pass
+        self.title.on_update()
 
     def on_draw(self, screen):
-        screen.blit(self.title, (180, 20))
-        self.menu.on_draw(screen, 20 + self.title.get_height() + 40)
+        self.menu.on_draw(screen, 200)
+        self.title.on_draw(screen)
         
     def on_event(self, event):
         if event.type == pygame.QUIT:
