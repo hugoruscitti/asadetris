@@ -35,15 +35,11 @@ class PresentsScene(scene.Scene):
     def __init__(self, director):
         scene.Scene.__init__(self, director)
         self.title = Title()
-        
-        self.menu = menu.Menu(
-            ["Jugar!", "Creditos", "Salir"],
-            utils.load_font("FreeSans.ttf", 30), (0, 0, 0),
-            utils.load_font("FreeSans.ttf", 30), (255, 255, 255)
-        )
+        self.menu = menu.Menu(["Jugar!", "Creditos", "Salir"])
 
     def on_update(self):
         self.title.on_update()
+        self.menu.on_update()
 
     def on_draw(self, screen):
         self.menu.on_draw(screen)
