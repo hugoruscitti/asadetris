@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import pygame
 import utils
+import pytweener
 
 
 class Cursor:
@@ -11,7 +12,9 @@ class Cursor:
         self.rect = self.image.get_rect()
         self.rect.centerx = 320
         self.start_y = start_y
+        self.y = 0
         self.item_height = item_height
+        self.tweener = pytweener.Tweener()
 
         self.set_position(0)
 
@@ -19,10 +22,13 @@ class Cursor:
         screen.blit(self.image, self.rect)
 
     def set_position(self, index):
-        self.rect.y = self.start_y + index * self.item_height
+        to_y = self.start_y + index * self.item_height
+        self.tweener.addTween(self, y=to_y, tweenTime=1)
+
     
     def on_update(self):
-        pass
+        self.tweener.update(0.1)
+        self.rect.y = self.y
 
 
 class Menu:
