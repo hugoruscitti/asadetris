@@ -124,7 +124,7 @@ Siguientes etapas
 	[_] crear la escena de configuración del juego
 		[_] opción para des/habilitar sonidos
 		[_] opción para des/habilitar musica
-		[_] alternar entre ventana y pantalla completa.
+		[X] alternar entre ventana y pantalla completa.
 		[_] selección del tema visual a utilizar. 
 	[_] administrar los puntajes del juego
 		[_] crear escena para mostrar los puntajes de los mejores jugadores

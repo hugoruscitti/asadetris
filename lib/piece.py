@@ -22,14 +22,16 @@ class PieceStatic(pygame.sprite.Sprite):
     def __init__(self, letter=None):
         pygame.sprite.Sprite.__init__(self)
         self.current_angle = 0
+        self.frame_index = 0
         
         if None == letter:
             self.letter = random.randrange(7)
         else:
             self.letter = letter
 
-        self.load_images("pieces/p" + str(self.letter) + ".png")
+        self.load_images(self.letter)
         self.load_matrix()
+        self.set_animation_frame(0)
         self.set_frame(0)
         self.set_position_rect(0, 0)
 
@@ -37,16 +39,9 @@ class PieceStatic(pygame.sprite.Sprite):
         rect = pygame.Rect(self.rect)
         image_rect = self.image.get_rect()
 
-        if self.current_angle == 45:
-            rect.y -= 40
-            rect.x -= 10
-        elif self.current_angle == -45:
-            rect.y -= 10
-            rect.x -= 40
-
-        #pygame.draw.rect(screen, (0,0,0), rect, 1)
-        #pygame.draw.rect(screen, (255,0,0), image_rect, 1)
-        screen.blit(self.image, rect)
+        center = rect.center
+        image_rect.center =center
+        screen.blit(self.image, image_rect)
 
 
     def load_matrix(self):
@@ -107,17 +102,25 @@ class PieceStatic(pygame.sprite.Sprite):
 
         return matrix
 
-    def load_images(self, path):
-        image, rect = utils.load_images(path, True)
+    def load_images(self, letter):
+        self.frames = []
+
+        for x in range(0, 360, 30):
+            filename = "pieces/p%d/%d_%d.png" %(letter, letter, x)
+            image, rect = utils.load_images(filename, True)
+            self.frames.append(image)
+
         w = rect.w / 4
         h = rect.h
-        self.frames = [image.subsurface(x * w, 0, w, h) for x in range(0, 4)]
 
     def set_frame(self, index):
-        self.original_image = self.frames[index]
-        self.image = self.frames[index]
+        self.original_image = self.frames[index * 3]
+        #self.image = self.frames[index * 3]
         self.frame_index = index
         self.matrix = self.matrix_list[index]
+
+    def set_animation_frame(self, index):
+        self.image = self.frames[index]
 
     def _print_matrix(self, matrix):
         "Imprime una matriz a modo de depuración."
@@ -129,9 +132,6 @@ class PieceStatic(pygame.sprite.Sprite):
         h = 80
 
         self.rect = pygame.Rect(x, y, w, h)
-
-
-
 
 
 class Piece(PieceStatic):
@@ -147,31 +147,30 @@ class Piece(PieceStatic):
         self.update_position_rect()
         self.speed = speed
         self.timer = 0
-        self.set_rotate_animation(start=0, end=0)
-
-    def set_rotate_animation(self, start, end):
-        if end > start:
-            self.rotate_animation = range(start, end, 10)
-        else:
-            self.rotate_animation = range(start, end, -10)
-
-    def update_animation(self):
-        if self.rotate_animation:
-            angle = self.rotate_animation.pop()
-            self.image = pygame.transform.rotozoom(self.original_image, angle, 1)
-            self.current_angle = angle
-        else:
-            self.image = self.original_image
-            self.current_angle = 0
+        self.animation = [0]
+        self.delay = 10
+        self.step = 0
+        self.rotate_direction = 0
 
     def update(self):
         self.timer += 1
 
         if self.timer > 40 - self.speed * 5:
             self.timer = 0
-            self.move(0, 1)
+            #self.move(0, 1)
 
         self.update_animation()
+
+    def update_animation(self):
+        if self.delay <= 0:
+            self.delay = 1
+            
+            if self.animation:
+                next_frame = self.animation.pop(0)
+                self.set_animation_frame(next_frame)
+        else:
+            self.delay -= 1
+
 
     def move(self, dx, dy):
         if dy > 0:
@@ -201,27 +200,26 @@ class Piece(PieceStatic):
         self.set_position_rect(LEFT_CORNER + x, TOP_CORNER + y)
 
     def rotate_to_left(self):
-        #self.rotate_animation = [-60, -30]
-        self.rotate_animation = [-45]
-        self.rotate_animation.reverse()
         self.rotate(-1)
 
     def rotate_to_right(self):
-        #self.rotate_animation = [60, 30]
-        self.rotate_animation = [45]
-        self.rotate_animation.reverse()
         self.rotate(1)
 
     def rotate(self, delta):
         posible_next_matrix = self.get_matrix_for_rotation(delta)
         row = self.position_row
         col = self.position_col
+        self.rotate_direction = delta
 
         if self.board.can_put_this_piece_here(row, col, posible_next_matrix):
-            self.frame_index = (self.frame_index + delta) % 4
+            last_frame = self.frame_index
+            next_frame = (self.frame_index + delta) % 4
+            self.start_animation(last_frame, next_frame)
+            self.frame_index = next_frame
             self.set_frame(self.frame_index)
         else:
             print "Evitando rotar, la pieza no tiene espacio para girar."
+
 
     def get_matrix_for_rotation(self, delta):
         next_rotation_index = (self.frame_index + delta) % 4
@@ -274,3 +272,28 @@ class Piece(PieceStatic):
             self.move(0, 1)
 
         self.move(0, 1)
+
+    def start_animation(self, last_frame, next_frame):
+        last_frame *= 3 
+        next_frame *= 3
+
+        if self.rotate_direction > 0:
+            if last_frame == 0:
+                animation = [0, 1, 2, 3]
+            elif last_frame == 3:
+                animation = [3, 4, 5, 6]
+            elif last_frame == 6:
+                animation = [6, 7, 8, 9]
+            elif last_frame == 9:
+                animation = [9, 10, 11, 0]
+        else:
+            if last_frame == 9:
+                animation = [9, 8, 7, 6]
+            elif last_frame == 6:
+                animation = [6, 5, 4, 3]
+            elif last_frame == 3:
+                animation = [3, 2, 1, 0]
+            elif last_frame == 0:
+                animation = [0, 11, 10, 9]
+
+        self.animation = animation
