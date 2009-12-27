@@ -157,7 +157,7 @@ class Piece(PieceStatic):
 
         if self.timer > 40 - self.speed * 5:
             self.timer = 0
-            #self.move(0, 1)
+            self.move(0, 1)
 
         self.update_animation()
 
