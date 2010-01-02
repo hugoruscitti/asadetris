@@ -19,11 +19,13 @@ class Cursor:
     def on_draw(self, screen):
         screen.blit(self.image, self.rect)
 
-    def set_position(self, index):
+    def set_position(self, index, inmediately=False):
         to_y = self.start_y + index * self.item_height - 2
-        self.tweener.addTween(self, y=to_y, tweenTime=1)
+        if not inmediately:
+            self.tweener.addTween(self, y=to_y, tweenTime=1)
+        else:
+            self.y = to_y
 
-    
     def on_update(self):
         self.tweener.update(0.1)
         self.rect.y = self.y
@@ -53,11 +55,48 @@ class Menu:
         self.imgs_normal = []
         self.imgs_selected = []
         
-        
         self._create_option_images()
+        self.last_mouse_position = pygame.mouse.get_pos()
+        # espera unos segundos antes de que el usuario pueda seleccionar algo
+        self.delay = 50
 
     def on_update(self):
         self.cursor.on_update()
+        self.handle_mouse_motion()
+
+        if pygame.mouse.get_pressed()[0]:
+            self.do_select()
+
+        if self.delay > 0:
+            self.delay -= 1
+
+
+    def handle_mouse_motion(self):
+        new_mouse_position = pygame.mouse.get_pos()
+
+        if self.last_mouse_position != new_mouse_position:
+            self.last_mouse_position = new_mouse_position 
+            self._change_cursor_position_by_mouse(new_mouse_position)
+
+    def _change_cursor_position_by_mouse(self, position):
+        mouse_x, mouse_y = position
+
+        for i in range(len(self.options)):
+            if i == self.selected:
+                img = self.imgs_selected[i]
+            else:
+                img = self.imgs_normal[i]
+            
+            x = 100
+            y = self.start_y + i * self.item_height
+            w = 440
+            h = 50
+            
+            rect = pygame.Rect((x, y, w, h))
+
+            if rect.collidepoint(mouse_x, mouse_y):
+                self.set_select_position(i)
+
 
     def _create_option_images(self):
         "Genera todos los items del menú."
@@ -103,7 +142,14 @@ class Menu:
         self.selected = (self.selected + 1) % len(self.options)
         self.cursor.set_position(self.selected)
 
+    def set_select_position(self, index):
+        self.selected = (index) % len(self.options)
+        self.cursor.set_position(self.selected, True)
+
     def do_select(self):
         "Cuando seleccionan pulsado ENTER o similar."
         (title, callback) = self.options[self.selected]
-        callback()
+
+        if self.delay <= 0:
+            callback()
+            self.delay = 50

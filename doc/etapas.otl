@@ -119,7 +119,7 @@ Siguientes etapas
 =================
 
 [_] % Etapa 6
-	[_] permitir que el usuario use el mouse para seleccionar en el menu.
+	[X] permitir que el usuario use el mouse para seleccionar en el menu.
 	[_] crear la escena de ayuda explicando los controles.
 	[_] crear la escena de configuración del juego
 		[_] opción para des/habilitar sonidos
