@@ -99,9 +99,7 @@ class Board:
         self.check_lines()
         
         if 1 == row:
-            print 'Game Over?'
-            self.gamescene.pause()
-            self.gamescene.show_message('Game Over?')
+            self.gamescene.on_game_over()
             return False
 
     def go_to_next_piece(self):
