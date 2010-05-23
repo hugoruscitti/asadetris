@@ -4,6 +4,7 @@ import utils
 import os
 from config import LEFT_CORNER, TOP_CORNER
 import random
+import config
 
 
 class Group(pygame.sprite.GroupSingle):
@@ -214,9 +215,15 @@ class Piece(PieceStatic):
         if self.board.can_put_this_piece_here(row, col, posible_next_matrix):
             last_frame = self.frame_index
             next_frame = (self.frame_index + delta) % 4
-            self.start_animation(last_frame, next_frame)
-            self.frame_index = next_frame
-            self.set_frame(self.frame_index)
+
+            if config.ANIMATE_PIECES:
+                self.start_animation(last_frame, next_frame)
+                self.frame_index = next_frame
+                self.set_frame(self.frame_index)
+            else:
+                self.frame_index = next_frame
+                self.set_frame(self.frame_index)
+                self.set_animation_frame(next_frame * 3)
         else:
             print "Evitando rotar, la pieza no tiene espacio para girar."
 
