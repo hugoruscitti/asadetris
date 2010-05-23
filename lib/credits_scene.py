@@ -10,7 +10,7 @@ class CreditScene(scene.Scene):
     def __init__(self, director):
         scene.Scene.__init__(self, director)
 
-        self.title , self.title_rect = utils.load_images("creditscene/title.png")
+        self.background, rect = utils.load_images("creditscene/background.png")
         self.font = utils.load_font("FreeSans.ttf", 25)
         
         self.authors = ["Hugo Ruscitti", "Juanxo", "Dokan", "lacabra25", \
@@ -23,10 +23,8 @@ class CreditScene(scene.Scene):
         pass
 
     def on_draw(self, screen):
-        self.title_rect.x = screen.get_width() / 2 - self.title_rect.width / 2
-        self.title_rect.y = 10;
-        screen.blit(self.title, self.title_rect)
-        pos_y = self.title_rect.bottom + 50
+        screen.blit(self.background, (0, 0))
+        pos_y = 100
         for author in self.rendered_authors:
             pos_x = screen.get_width() / 2 - author.get_rect().width / 2
             screen.blit(author, (pos_x, pos_y))
