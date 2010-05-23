@@ -2,9 +2,11 @@
 import pygame
 import scene
 import utils
+import pytweener
 import board
 import piece
 import display
+import game_scene_messages
 
 
 class GameScene(scene.Scene):
@@ -14,6 +16,7 @@ class GameScene(scene.Scene):
 
     def __init__(self, director):
         scene.Scene.__init__(self, director)
+        self.graphic_message = None
         self.running = True
         self.current_message = None
         self.current_message_rect = None
@@ -22,8 +25,13 @@ class GameScene(scene.Scene):
         self.background, tmp = utils.load_images("gamescene/background.png")
         self.pieces = piece.Group()
         self.game_speed = 0
-        self.go_to_next_piece()
         self.create_return_message()
+        self.show_graphic_message(game_scene_messages.AreYouReadyMessage(self))
+
+    def unpause_and_start_to_play(self):
+        self.running = True
+        self.go_to_next_piece()
+
 
     def create_return_message(self):
         font = utils.load_font("FreeSans.ttf", 14)
@@ -33,6 +41,8 @@ class GameScene(scene.Scene):
     def on_update(self):
         self.board.update()
         self.pieces.update()
+        if self.graphic_message:
+            self.graphic_message.on_update()
 
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
@@ -40,6 +50,9 @@ class GameScene(scene.Scene):
         self.pieces.draw(screen)
         self.board.draw(screen)
         screen.blit(self.return_message, (8, 460))
+
+        if self.graphic_message:
+            self.graphic_message.on_draw(screen)
         
         if self.current_message:
             x = ( 640 - self.current_message_rect.w ) / 2
@@ -97,3 +110,12 @@ class GameScene(scene.Scene):
     def show_message(self, text):
         font = utils.load_font("FreeSans.ttf", 14)
         self.current_message, self.current_message_rect = utils.render_text(text, font)
+
+    def show_graphic_message(self, message_object):
+        """Muestra un mensaje a partir de una imagen.
+
+        Detiene el juego hasta que el mensaje desaparece de la escena."""
+        self.graphic_message = message_object
+
+    def on_game_over(self):
+        self.show_graphic_message(game_scene_messages.GameOverMessage(self))
