@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '',
+        URL_ROOT:    '#',
         VERSION:     '0.1',
         COLLAPSE_MODINDEX: false,
         FILE_SUFFIX: '.html',
@@ -46,8 +46,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="estilo-de-programaci-n">
-<h1>Estilo de programación<a class="headerlink" href="#estilo-de-programaci-n" title="Enlazar permanentemente con este título">¶</a></h1>
+  <div class="section" id="estilo-de-programacion">
+<h1>Estilo de programación<a class="headerlink" href="#estilo-de-programacion" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>Este documento define las convenciones de programación que
 utilizamos para el proyecto. Esta guia no permiten
 lograr código consistente, fácil de leer y uniforme.</p>
@@ -56,8 +56,8 @@ convención, si quiere conocer mas detalles le recomendamos
 ver el documento que define por completo el estilo adoptado:</p>
 <blockquote>
 <a class="reference external" href="http://mundogeek.net/traducciones/guia-estilo-python.htm">http://mundogeek.net/traducciones/guia-estilo-python.htm</a></blockquote>
-<div class="section" id="estructura-del-c-digo">
-<h2>Estructura del código<a class="headerlink" href="#estructura-del-c-digo" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="estructura-del-codigo">
+<h2>Estructura del código<a class="headerlink" href="#estructura-del-codigo" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Es indispensable que el código en python esté identando de
 la misma forma en todo el proyecto. Aquí utilizamos <strong>4 espacios</strong>
 para definir cada bloque de código.</p>
@@ -78,8 +78,8 @@ tecla TAB. Esta funcionalidad la soportan la mayoría de
 los editores.</p>
 </div>
 </div>
-<div class="section" id="sistema-de-codificaci-n">
-<h2>Sistema de codificación<a class="headerlink" href="#sistema-de-codificaci-n" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="sistema-de-codificacion">
+<h2>Sistema de codificación<a class="headerlink" href="#sistema-de-codificacion" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Utilizamos el sistema de codificación <em>UTF8</em>, esto nos permite escribir
 comentarios en español con mayor naturalidad.</p>
 <p>Los archivos python creados en este proyecto comienzan con el
@@ -109,7 +109,7 @@ coma:</p>
 </pre></div>
 </div>
 <p>y entre operadores como por ejemplo:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mf">640</span><span class="p">,</span> <span class="mf">480</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span>
 <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">size</span>
 <span class="n">screen</span> <span class="o">=</span> <span class="n">create_display</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
 
@@ -118,8 +118,8 @@ coma:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="documentaci-n">
-<h2>Documentación<a class="headerlink" href="#documentaci-n" title="Enlazar permanentemente con este título">¶</a></h2>
+<div class="section" id="documentacion">
+<h2>Documentación<a class="headerlink" href="#documentacion" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Documentamos funciones y clases de manera breve usando <em>docstrings</em>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Sprite</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Representa un personaje animado en la pantalla.&quot;&quot;&quot;</span>
@@ -139,8 +139,8 @@ dato que señalan.</p>
 <p>Las variables y las funciones se escriben en minúsculas, y si
 se componen de varias palabras usamos el guion bajo para separarlas.</p>
 <p>Por ejemplo:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mf">40</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mf">100</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">logo</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s">&#39;menu/logo.png&#39;</span><span class="p">)</span>
 
 <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">logo</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
@@ -153,7 +153,7 @@ donde cada palabra se distingue de otra usando una mayúscula:</p>
     <span class="k">pass</span>
 
 <span class="n">image</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">load_image</span><span class="p">(</span><span class="s">&#39;animation.png&#39;</span><span class="p">)</span>
-<span class="n">animation</span> <span class="o">=</span> <span class="n">SimpleAnimation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mf">5</span><span class="p">)</span>
+<span class="n">animation</span> <span class="o">=</span> <span class="n">SimpleAnimation</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -167,12 +167,12 @@ donde cada palabra se distingue de otra usando una mayúscula:</p>
         <div class="sphinxsidebarwrapper">
             <h3><a href="index.html">Contenidos</a></h3>
             <ul>
-<li><a class="reference external" href="">Estilo de programación</a><ul>
-<li><a class="reference external" href="#estructura-del-c-digo">Estructura del código</a></li>
-<li><a class="reference external" href="#sistema-de-codificaci-n">Sistema de codificación</a></li>
+<li><a class="reference external" href="#">Estilo de programación</a><ul>
+<li><a class="reference external" href="#estructura-del-codigo">Estructura del código</a></li>
+<li><a class="reference external" href="#sistema-de-codificacion">Sistema de codificación</a></li>
 <li><a class="reference external" href="#inclusiones">Inclusiones</a></li>
 <li><a class="reference external" href="#separaciones-y-caracteres-en-blanco">Separaciones y caracteres en blanco</a></li>
-<li><a class="reference external" href="#documentaci-n">Documentación</a></li>
+<li><a class="reference external" href="#documentacion">Documentación</a></li>
 <li><a class="reference external" href="#nombres">Nombres</a></li>
 </ul>
 </li>
@@ -223,7 +223,7 @@ donde cada palabra se distingue de otra usando una mayúscula:</p>
     </div>
     <div class="footer">
       &copy; Copyright 2009, Losersjuegos.
-      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.1.
+      Creado con <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.6.5.
     </div>
   </body>
 </html>
