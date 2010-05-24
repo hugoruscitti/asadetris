@@ -7,6 +7,31 @@ import board
 import piece
 import display
 import game_scene_messages
+from config import LEFT_CORNER, TOP_CORNER
+DELAY_LINE_COMPLE_EFFECT = 30
+
+
+class LineAnimation:
+
+    def __init__(self, lines):
+        self.lines = lines
+        self.count = 0
+
+    def draw(self, screen):
+        self.count += 1
+
+        for line in self.lines:
+            self.blit_rect(screen, line)
+
+    def blit_rect(self, screen, line):
+        rect = pygame.Rect((LEFT_CORNER, TOP_CORNER + line * 20, 20 * 10, 20))
+
+        if self.count % 10 <= 5:
+            color = (255, 255, 255)
+        else:
+            color = (100, 100, 100)
+
+        screen.fill(color, rect)
 
 
 class GameScene(scene.Scene):
@@ -18,6 +43,7 @@ class GameScene(scene.Scene):
         scene.Scene.__init__(self, director)
         self.graphic_message = None
         self.running = True
+        self.delay_showing_line_animation = 0
         self.current_message = None
         self.current_message_rect = None
         self.board = board.Board(self)
@@ -27,11 +53,12 @@ class GameScene(scene.Scene):
         self.game_speed = 0
         self.create_return_message()
         self.show_graphic_message(game_scene_messages.AreYouReadyMessage(self))
+        self.line_animation = None
+        self.delay_showing_line_animation = 0
 
     def unpause_and_start_to_play(self):
         self.running = True
         self.go_to_next_piece()
-
 
     def create_return_message(self):
         font = utils.load_font("FreeSans.ttf", 14)
@@ -39,8 +66,13 @@ class GameScene(scene.Scene):
         self.return_message, rect = utils.render_text(text, font)
 
     def on_update(self):
-        self.board.update()
-        self.pieces.update()
+
+        if self.delay_showing_line_animation:
+            self.delay_showing_line_animation -= 1
+        else:
+            self.board.update()
+            self.pieces.update()
+
         if self.graphic_message:
             self.graphic_message.on_update()
 
@@ -50,6 +82,14 @@ class GameScene(scene.Scene):
         self.pieces.draw(screen)
         self.board.draw(screen)
         screen.blit(self.return_message, (8, 460))
+
+        # muestra la animacion de las lineas que se han
+        # eliminando.
+        if self.delay_showing_line_animation:
+            self.line_animation.draw(screen)
+
+            if self.delay_showing_line_animation == 1:
+                self.board.remove_complete_lines()
 
         if self.graphic_message:
             self.graphic_message.on_draw(screen)
@@ -99,9 +139,14 @@ class GameScene(scene.Scene):
             self.pieces.add(nextp)
             self.display.set_next_piece()
 
-    def on_line_complete(self):
-        self.display.on_line_complete()
-        self.game_speed = self.display.level * 2
+    def on_line_complete(self, lines):
+        self.line_animation = LineAnimation(lines)
+        for line in lines:
+            self.display.on_line_complete()
+
+        # aumenta la velocidad del juego
+        self.game_speed = (self.display.level * 2) * len(lines)
+        self.delay_showing_line_animation = DELAY_LINE_COMPLE_EFFECT
 
     def pause(self):
         self.running = False

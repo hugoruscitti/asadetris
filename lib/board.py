@@ -133,12 +133,14 @@ class Board:
         self.matrix = self.matrix[:row] + self.matrix[row + 1:]
         self.matrix.insert(0, empty_line)
         
-        print "Asi queda la matriz luego de remover la linea."
-        import pprint
-        pprint.pprint(self.matrix)
-
+        #print "Asi queda la matriz luego de remover la linea."
+        #import pprint
+        #pprint.pprint(self.matrix)
 
     def check_lines(self):
+        "Informa al objeto game si hay al menos una linea de bloques completa."
+        lines = []
+
         for row in range(len(self.matrix)):
             width = len(self.matrix[row])
             cwidth = 0
@@ -148,7 +150,24 @@ class Board:
                     cwidth += 1
 
             if cwidth == width:
-                print "LINE at ROW %d" % (row)
-                # self.draw_line_block(row)
+                lines.append(row)
+
+        if lines:
+            self.gamescene.on_line_complete(lines)
+
+    def remove_complete_lines(self):
+        """Elimina las lineas completas del tablero.
+
+        Este metodo lo invoca la clase Game luego de mostrar
+        un efecto sobre las lineas que van a desaparecer."""
+
+        for row in range(len(self.matrix)):
+            width = len(self.matrix[row])
+            cwidth = 0
+
+            for col in range(width):
+                if self.matrix[row][col] == 1:
+                    cwidth += 1
+
+            if cwidth == width:
                 self.chop_line(row)
-                self.gamescene.on_line_complete()

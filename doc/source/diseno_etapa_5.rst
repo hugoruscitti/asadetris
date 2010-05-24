@@ -51,3 +51,38 @@ desde ahí se invoca a la siguiente sentencia.
 
     def on_game_over(self):
         self.show_graphic_message(game_scene_messages.GameOverMessage(self))
+
+
+Animación al eliminar lineas
+----------------------------
+
+En esta estapa también se ha incorporado una animación sencilla
+cuando se elimina una o mas lineas.
+
+Para crear el efecto se optó lo mas sencillo, mostrar un
+rectángulo intermitente sobre la linea que desaparece.
+
+El encargado del efecto es el objeto ``LineAnimation`` dentro
+del archivo ``gamescene.py``. Este objeto se genera cada vez
+que se realizan lineas. Por ejemplo, el siguiente
+fragmento de código se ejecuta cuando el usuario realiza
+una o mas lineas (el que invoca a este método es el
+objeto ``Board``):
+
+.. code-block:: python
+
+    def on_line_complete(self, lines):
+        self.line_animation = LineAnimation(lines)
+
+        # aumenta la velocidad del juego
+        self.game_speed = (self.display.level * 2) * len(lines)
+        self.delay_showing_line_animation = DELAY_LINE_COMPLE_EFFECT
+
+Aquí hay dos sentencias importantes, la primera genera el objeto
+``LineAnimation`` indicando las lineas que se van a eliminar. Y la
+segunda sentencia es la que le da valor al atributo ``delay_showing_line_animation``,
+este atributo indica que el juego debe detenerse unos pocos milisegundos
+para que el usuario pueda ver la animación.
+
+Cuando este contador llega a cero, el juego continúa y el tablero se limpia
+de efectos para que pueda seguir jugando.
