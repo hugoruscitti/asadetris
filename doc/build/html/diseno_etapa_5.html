@@ -51,11 +51,10 @@
 <div class="section" id="velocidad-del-juego">
 <h2>Velocidad del juego<a class="headerlink" href="#velocidad-del-juego" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Cuando el usuario realiza 10 lineas buscamos que el juego aumente
-de velocidad. Esto se logra mediante la interacción de los
-objectos <cite>Display</cite>, <cite>Game</cite> y <cite>Piece</cite>.</p>
+de velocidad. Esto se logra mediante la interacción de los objectos <cite>Display</cite>, <cite>Game</cite> y <cite>Piece</cite>.</p>
 <p>Básicamente quien coordina la velocidad del juego es la clase
 <cite>Game</cite>. Mientras el usuario está jugando el objeto <cite>Game</cite> almacena
-en su atributo <cite>speed</cite> la velocidad que le tiene que asignar
+en su atributo <cite>speed</cite> la veocidad que le tiene que asignar
 a cada pieza que genera. Este atributo de velocidad depende de
 lo que le diga la clase <cite>Display</cite>, que conoce cuantas lineas
 del juego a realiza el usuario y en qué nivel se encuenta.</p>
@@ -63,6 +62,58 @@ del juego a realiza el usuario y en qué nivel se encuenta.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">nivel</span> <span class="o">=</span> <span class="n">lineas</span> <span class="o">/</span> <span class="mi">10</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="mensajes-dentro-del-juego-como-subscenes">
+<h2>Mensajes dentro del juego como subscenes<a class="headerlink" href="#mensajes-dentro-del-juego-como-subscenes" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Mientras estás jugando es importante que el juego que
+marque claramente cuando pierdes o comienza el nivel.</p>
+<p>Por eso, se ha creado la posibilidad de que la clase
+<tt class="docutils literal"><span class="pre">game</span></tt> pueda presentar distintos mensajes durante la
+sesión de juego. Por ejemplo, cuando se inicia el
+juego se presenta un mensaje de tipo <tt class="docutils literal"><span class="pre">listo...</span> <span class="pre">ya!!</span></tt> para
+indicar que el juego ha comenzado.</p>
+<p>Los mensajes se han incoporado como objetos dentro
+del modulo <tt class="docutils literal"><span class="pre">game_scene_messages</span></tt>.</p>
+<p>Cuando el objeto <tt class="docutils literal"><span class="pre">GameScene</span></tt> quiere mostrar un mensaje, solo
+tiene que llamar al método <tt class="docutils literal"><span class="pre">show_graphic_message</span></tt> y pasarle
+como argumento la instancia de un objeto del módulo
+<tt class="docutils literal"><span class="pre">game_scene_messages</span></tt>. Por ejemplo, cuando se inicia el
+juego.</p>
+<p>Algo similar ocurre cuando el jugador pierde. Simplemente se
+llama al método <tt class="docutils literal"><span class="pre">on_game_over</span></tt> de la clase <tt class="docutils literal"><span class="pre">GameScene</span></tt> y
+desde ahí se invoca a la siguiente sentencia.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_game_over</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">show_graphic_message</span><span class="p">(</span><span class="n">game_scene_messages</span><span class="o">.</span><span class="n">GameOverMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="animacion-al-eliminar-lineas">
+<h2>Animación al eliminar lineas<a class="headerlink" href="#animacion-al-eliminar-lineas" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En esta estapa también se ha incorporado una animación sencilla
+cuando se elimina una o mas lineas.</p>
+<p>Para crear el efecto se optó lo mas sencillo, mostrar un
+rectángulo intermitente sobre la linea que desaparece.</p>
+<p>El encargado del efecto es el objeto <tt class="docutils literal"><span class="pre">LineAnimation</span></tt> dentro
+del archivo <tt class="docutils literal"><span class="pre">gamescene.py</span></tt>. Este objeto se genera cada vez
+que se realizan lineas. Por ejemplo, el siguiente
+fragmento de código se ejecuta cuando el usuario realiza
+una o mas lineas (el que invoca a este método es el
+objeto <tt class="docutils literal"><span class="pre">Board</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">on_line_complete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">line_animation</span> <span class="o">=</span> <span class="n">LineAnimation</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+    <span class="c"># aumenta la velocidad del juego</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">game_speed</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">level</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">delay_showing_line_animation</span> <span class="o">=</span> <span class="n">DELAY_LINE_COMPLE_EFFECT</span>
+</pre></div>
+</div>
+<p>Aquí hay dos sentencias importantes, la primera genera el objeto
+<tt class="docutils literal"><span class="pre">LineAnimation</span></tt> indicando las lineas que se van a eliminar. Y la
+segunda sentencia es la que le da valor al atributo <tt class="docutils literal"><span class="pre">delay_showing_line_animation</span></tt>,
+este atributo indica que el juego debe detenerse unos pocos milisegundos
+para que el usuario pueda ver la animación.</p>
+<p>Cuando este contador llega a cero, el juego continúa y el tablero se limpia
+de efectos para que pueda seguir jugando.</p>
 </div>
 </div>
 
@@ -76,6 +127,8 @@ del juego a realiza el usuario y en qué nivel se encuenta.</p>
             <ul>
 <li><a class="reference external" href="#">Diseño de la etapa 5</a><ul>
 <li><a class="reference external" href="#velocidad-del-juego">Velocidad del juego</a></li>
+<li><a class="reference external" href="#mensajes-dentro-del-juego-como-subscenes">Mensajes dentro del juego como subscenes</a></li>
+<li><a class="reference external" href="#animacion-al-eliminar-lineas">Animación al eliminar lineas</a></li>
 </ul>
 </li>
 </ul>
