@@ -11,12 +11,14 @@ class CreditScene(scene.Scene):
         scene.Scene.__init__(self, director)
 
         self.background, rect = utils.load_images("creditscene/background.png")
-        self.font = utils.load_font("FreeSans.ttf", 25)
+        self.font = utils.load_font("FreeSans.ttf", 20)
         
-        self.authors = ["Hugo Ruscitti", "Juanxo", "Dokan", "lacabra25", \
-                        "Juan Carlos", "thepoi", "joksnet", "Walter Velazquez"]
+        self.program = ["Hugo Ruscitti", "Juanxo", "Dokan", "lacabra25", 
+                        "Juan Carlos", "thepoi", "joksnet"]
+        self.art = ["Walter Velazquez"]
                         
-        self.rendered_authors = self.render_authors()
+        self.rendered_program = self.render_authors(self.program)
+        self.rendered_art = self.render_authors(self.art)
 
 
     def on_update(self):
@@ -24,11 +26,15 @@ class CreditScene(scene.Scene):
 
     def on_draw(self, screen):
         screen.blit(self.background, (0, 0))
-        pos_y = 100
-        for author in self.rendered_authors:
-            pos_x = screen.get_width() / 2 - author.get_rect().width / 2
-            screen.blit(author, (pos_x, pos_y))
-            pos_y += author.get_rect().height + 5
+        self.render_names(screen, self.rendered_program, 60, 150)
+        self.render_names(screen, self.rendered_art, 400, 150)
+
+    def render_names(self, screen, names, x, y):
+        "Imprime una lista de imagenes (con nombres de personas) sobre screen."
+
+        for author in names:
+            screen.blit(author, (x, y))
+            y += author.get_rect().height + 5
 
     def on_event(self, event):
         if event.type == pygame.QUIT:
@@ -38,9 +44,11 @@ class CreditScene(scene.Scene):
                 scene = presents_scene.PresentsScene(self.director, 2)
                 self.director.change_scene(scene)
     
-    def render_authors(self):
+    def render_authors(self, names):
         rendered_authors = []
-        for author in self.authors:
+
+        for author in names:
             rendered_text = utils.render_text(author, self.font)[0]
             rendered_authors.append(rendered_text)
+
         return rendered_authors
