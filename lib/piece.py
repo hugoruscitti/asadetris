@@ -167,7 +167,7 @@ class Piece(PieceStatic):
     def update(self):
         self.timer += 1
 
-        if self.timer > 40 - self.speed * 5:
+        if self.timer > 40 - self.speed * 4:
             self.timer = 0
             self.move(0, 1)
 
