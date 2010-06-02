@@ -70,8 +70,9 @@ class GameScene(scene.Scene):
         if self.delay_showing_line_animation:
             self.delay_showing_line_animation -= 1
         else:
-            self.board.update()
-            self.pieces.update()
+            if self.running:
+                self.board.update()
+                self.pieces.update()
 
         if self.graphic_message:
             self.graphic_message.on_update()
@@ -107,6 +108,12 @@ class GameScene(scene.Scene):
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
                 self._return_to_main_menu()
+            elif event.key == pygame.K_p:
+	        if self.running:
+        	    self.on_game_pause()
+		else:
+		    self.graphic_message = None
+		    self.running = True
             else:
                 self.emit_on_key_down_event_to_pieces(event)
         elif event.type == pygame.JOYBUTTONDOWN:
@@ -115,8 +122,9 @@ class GameScene(scene.Scene):
             self.emit_joyhatmotion_event_to_pieces(event)
 
     def emit_on_key_down_event_to_pieces(self, event):
-        for piece in self.pieces.sprites():
-            piece.on_key_down_event(event)
+        if self.running:
+            for piece in self.pieces.sprites():
+                piece.on_key_down_event(event)
 
     def emit_joyhatmotion_event_to_pieces(self, event):
         for piece in self.pieces.sprites():
@@ -145,7 +153,8 @@ class GameScene(scene.Scene):
             self.display.on_line_complete()
 
         # aumenta la velocidad del juego
-        self.game_speed = (self.display.level * 2) * len(lines)
+        self.game_speed = (self.display.level * 2)
+	print self.game_speed
         self.delay_showing_line_animation = DELAY_LINE_COMPLE_EFFECT
 
     def pause(self):
@@ -164,3 +173,7 @@ class GameScene(scene.Scene):
 
     def on_game_over(self):
         self.show_graphic_message(game_scene_messages.GameOverMessage(self))
+	
+    def on_game_pause(self):
+        self.running = False
+        self.show_graphic_message(game_scene_messages.PauseMessage(self))
