@@ -107,7 +107,11 @@ class GameScene(scene.Scene):
             self.director.quit()
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
-                self._return_to_main_menu()
+	        if self.running:
+                    self._return_to_main_menu()
+                else:
+		    self.graphic_message = None
+		    self.running = True
             elif event.key == pygame.K_p:
 	        if self.running:
         	    self.on_game_pause()
