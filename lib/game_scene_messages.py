@@ -81,7 +81,23 @@ class GameOverMessage(GameSceneMessage):
     def on_update(self):
         GameSceneMessage.on_update(self)
 
+    def on_draw(self, screen):
+        self.rect.x = self.x
+        screen.blit(self.graphic_message, self.rect)
 
+
+class PauseMessage(GameSceneMessage):
+
+    def __init__(self, game):
+        GameSceneMessage.__init__(self, game)
+        self.graphic_message, self.rect = utils.load_images('gamescene/pause.png')
+        self.x = - 100
+        self.rect.y = 200
+        self.tweener.addTween(self, x=200, tweenTime=0.3,
+                tweenType=pytweener.Easing.Elastic.easeOut)
+
+    def on_update(self):
+        GameSceneMessage.on_update(self)
 
     def on_draw(self, screen):
         self.rect.x = self.x

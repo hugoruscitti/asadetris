@@ -22,7 +22,7 @@ class Cursor:
     def set_position(self, index, inmediately=False):
         to_y = self.start_y + index * self.item_height - 2
         if not inmediately:
-            self.tweener.addTween(self, y=to_y, tweenTime=1)
+            self.tweener.addTween(self, y=to_y, tweenTime=0.5)
         else:
             self.y = to_y
 

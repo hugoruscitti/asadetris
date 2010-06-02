@@ -19,6 +19,7 @@
 	☑ soporte para jugar con joystick.
 	☐ probar en otros sistemas operativos como windows.
 	☐ genera version ejecutable en formato .exe
+        ☑ que se pueda pausar el juego
         ☑ mejorar la escena de juego
           ☑ crear un mensaje al inicio que diga "listo, ya!!"
           ☑ mostrar un mensaje de game over con una imagen
