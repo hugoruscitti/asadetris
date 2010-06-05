@@ -17,8 +17,8 @@
 	☑ aplicar animaciones a la rotación de las piezas
 	☑ permite aternar entre pantalla completa y ventana.
 	☑ soporte para jugar con joystick.
-	☐ probar en otros sistemas operativos como windows.
-	☐ genera version ejecutable en formato .exe
+	☑ probar en otros sistemas operativos como windows.
+	☑ genera version ejecutable en formato .exe
         ☑ que se pueda pausar el juego
         ☑ mejorar la escena de juego
           ☑ crear un mensaje al inicio que diga "listo, ya!!"
